@@ -127,8 +127,8 @@ class _OnboardingState extends State<Onboarding> {
           itemCount: controller.length,
           controller: pageController,
           itemBuilder: (context, index) {
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -46,18 +46,25 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: HexColor("#141414"),
               textTheme: TextTheme(
                 headlineMedium: TextStyle(
-                  fontFamily: "pjs-bold",
-                  color: Colors.white,
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-                bodyLarge: const TextStyle(
-                  fontFamily: "pjs-bold",
-                  color: Colors.white,
-                ),
-                bodyMedium: const TextStyle(
                   fontFamily: "pjs",
                   color: Colors.white,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+                bodyLarge: TextStyle(
+                  fontFamily: "pjs",
+                  color: Colors.white,
+                  fontSize: 16.sp,
+                ),
+                bodyMedium: TextStyle(
+                  fontFamily: "pjs",
+                  color: Colors.white,
+                  fontSize: 12.sp,
+                ),
+                bodySmall: TextStyle(
+                  fontFamily: "pjs",
+                  color: Colors.white,
+                  fontSize: 8.sp,
                 ),
               ),
               textSelectionTheme: TextSelectionThemeData(

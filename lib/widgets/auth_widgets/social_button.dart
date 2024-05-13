@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
@@ -7,11 +8,11 @@ class SocialButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.function,
-    required this.image,
+    required this.icon,
   });
 
   final String text;
-  final String image;
+  final String icon;
   final Function function;
 
   @override
@@ -35,8 +36,8 @@ class SocialButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                image,
+              SvgPicture.asset(
+                'assets/icons/$icon.svg',
                 width: 30,
               ),
               const SizedBox(

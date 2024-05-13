@@ -14,30 +14,24 @@ class AppBarWithBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 7.sp, vertical: 10.sp),
+      padding: EdgeInsets.symmetric(vertical: 10.sp),
       child: Stack(
         alignment: Alignment.center,
         children: [
           // back button
           Row(
             children: [
-              Material(
-                color: Colors.transparent,
+              InkWell(
                 borderRadius: BorderRadius.circular(30),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  splashColor: Colors.white10,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: HexColor("#2C2C2C"), width: 1),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: const EdgeInsets.all(10),
-                    child: SvgPicture.asset('assets/icons/back.svg'),
+                onTap: () => Navigator.of(context).pop(),
+                splashColor: Colors.white10,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: HexColor("#2C2C2C"), width: 1),
+                    borderRadius: BorderRadius.circular(30),
                   ),
+                  padding: EdgeInsets.all(10.sp),
+                  child: SvgPicture.asset('assets/icons/back.svg'),
                 ),
               )
             ],

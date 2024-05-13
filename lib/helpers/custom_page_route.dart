@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../screens/auth/auth_root.dart';
+import '../screens/auth/create_account_screen.dart';
 import '../screens/auth/login_screen.dart';
 
 class CustomPageRoute {
@@ -15,6 +16,11 @@ class CustomPageRoute {
       case LoginScreen.routeName:
         return _pageTransition(
           child: const LoginScreen(),
+          settings: settings,
+        );
+      case CreateAccountScreen.routeName:
+        return _pageTransition(
+          child: const CreateAccountScreen(),
           settings: settings,
         );
       default:

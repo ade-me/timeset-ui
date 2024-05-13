@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/widgets/auth_widgets/auth_button.dart';
-import 'package:timeset/widgets/general_widgets/app_bar_with_back_button.dart';
-import 'package:timeset/widgets/auth_widgets/social_button.dart';
 
+import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
+import '../../widgets/auth_widgets/auth_button.dart';
+import '../../widgets/auth_widgets/auth_option_divider.dart';
+import '../../widgets/auth_widgets/social_button.dart';
+import '../../widgets/general_widgets/app_bar_with_back_button.dart';
+import '../../widgets/general_widgets/general_app_padding.dart';
+import 'create_account_screen.dart';
 import 'login_screen.dart';
 
 class AuthRoot extends StatefulWidget {
@@ -19,100 +22,59 @@ class AuthRoot extends StatefulWidget {
 class _AuthRootState extends State<AuthRoot> {
   @override
   Widget build(BuildContext context) {
+    var textTheme2 = Theme.of(context).textTheme;
+    var sizedBox = SizedBox(
+      height: 2.h,
+    );
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: AppBarWithBackButton(),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20, bottom: 60),
-                      child: Image.asset(
-                        "assets/logos/logo.png",
-                        width: 28.w,
+        child: GeneralAppPadding(
+          verticalPadding: 2.h,
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const AppBarWithBackButton(),
+                      Container(
+                        margin: EdgeInsets.only(top: 2.h, bottom: 6.h),
+                        child: Image.asset(
+                          "assets/logos/logo.png",
+                          width: 28.w,
+                        ),
                       ),
-                    ),
-                    const Text(
-                      "Let's get you in",
-                      style: TextStyle(
-                        fontFamily: "pjs-semi-bold",
-                        fontSize: 33,
+                      Text(
+                        "Let's get you in",
+                        style: textTheme2.headlineMedium,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 30,
-                      ),
-                      child: Column(
-                        children: [
-                          SocialButton(
-                            text: "Continue with Facebook",
-                            function: () {},
-                            image: "assets/icons/facebook.png",
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SocialButton(
-                            text: "Continue with Google",
-                            function: () {},
-                            image: "assets/icons/google.png",
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SocialButton(
-                            text: "Continue with Apple",
-                            function: () {},
-                            image: "assets/icons/apple.png",
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(30),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    color: HexColor("#2C2C2C"),
-                                    height: 1.0,
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 15.0,
-                                    right: 15.0,
-                                  ),
-                                  child: Text(
-                                    'or',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    color: HexColor("#2C2C2C"),
-                                    height: 1.0,
-                                  ),
-                                ),
-                              ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 4.h,
+                        ),
+                        child: Column(
+                          children: [
+                            SocialButton(
+                              text: "Continue with Facebook",
+                              function: () {},
+                              icon: "facebook",
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 15,
+                            sizedBox,
+                            SocialButton(
+                              text: "Continue with Google",
+                              function: () {},
+                              icon: "google",
                             ),
-                            child: Column(
+                            sizedBox,
+                            SocialButton(
+                              text: "Continue with Apple",
+                              function: () {},
+                              icon: "apple",
+                            ),
+                            const AuthOptionalDivider(
+                              optionText: 'or',
+                            ),
+                            Column(
                               children: [
                                 AuthButton(
                                   text: "Sign in with password",
@@ -121,44 +83,28 @@ class _AuthRootState extends State<AuthRoot> {
                                     LoginScreen.routeName,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 18,
+                                SizedBox(
+                                  height: 3.h,
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "Don't have an account?",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Text(
-                                        "Sign Up",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: HexColor(
-                                            "#9CBB30",
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
+                                AuthAlternateActionText(
+                                  alternateText: "Don't have an account? ",
+                                  actionText: "Sign Up",
+                                  function: () => Navigator.pushNamed(
+                                    context,
+                                    CreateAccountScreen.routeName,
+                                  ),
                                 )
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

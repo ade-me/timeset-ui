@@ -7,18 +7,18 @@ import '../../widgets/auth_widgets/auth_social_options.dart';
 import '../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/general_app_padding.dart';
-import 'create_account_screen.dart';
+import 'login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const routeName = '/LoginScreen';
+class CreateAccountScreen extends StatefulWidget {
+  static const routeName = '/CreateAccountScreen';
 
-  const LoginScreen({super.key});
+  const CreateAccountScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const AppBarWithBackButton(),
                       sizedBox,
                       Text(
-                        'Login to Your Account',
+                        'Create Your Account',
                         style: textTheme.headlineMedium,
                       ),
                       sizedBox,
@@ -101,23 +101,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 3.h),
                       AuthButton(
-                        text: 'Sign In',
+                        text: 'Sign Up',
                         isDisabled:
                             emailHasInput && passwordHasInput ? false : true,
                         function: () {},
                       ),
-                      SizedBox(height: 3.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Forgot your password?',
-                            style: TextStyle(
-                              color: theme.primaryColor,
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
@@ -125,11 +113,11 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const AuthSocialOptions(),
             AuthAlternateActionText(
-              alternateText: 'Don\'t have an account? ',
-              actionText: 'Sign Up',
+              alternateText: 'Already have an account? ',
+              actionText: 'Sign In',
               function: () => Navigator.pushReplacementNamed(
                 context,
-                CreateAccountScreen.routeName,
+                LoginScreen.routeName,
               ),
             ),
             SizedBox(height: 4.h),

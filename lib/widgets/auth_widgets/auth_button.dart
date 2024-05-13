@@ -4,29 +4,34 @@ import 'package:sizer/sizer.dart';
 import 'package:timeset/widgets/general_widgets/circular_loader.dart';
 
 class AuthButton extends StatelessWidget {
-  const AuthButton(
-      {super.key,
-      required this.text,
-      required this.function,
-      this.isLoading = false,
-      this.bgColor = "#9CBB30",
-      this.color = "#141414"});
+  const AuthButton({
+    super.key,
+    required this.text,
+    required this.function,
+    this.isLoading = false,
+    this.bgColor = "#9CBB30",
+    this.color = "#141414",
+    this.isDisabled = false,
+  });
 
   final String text;
   final String bgColor;
   final String color;
   final bool isLoading;
+  final bool isDisabled;
   final Function function;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: HexColor(bgColor),
+      color: HexColor(bgColor).withOpacity(isDisabled ? 0.2 : 1),
       borderRadius: BorderRadius.circular(30),
       child: InkWell(
-        onTap: () {
-          function();
-        },
+        onTap: isDisabled
+            ? null
+            : () {
+                function();
+              },
         splashColor: Colors.white10,
         borderRadius: BorderRadius.circular(30),
         child: Container(
