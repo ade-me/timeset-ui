@@ -1,0 +1,88 @@
+name: timeset
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  provider: ^6.1.2
+  flutter_native_splash: ^2.3.11
+  hexcolor: ^3.0.1
+  flutter_launcher_icons: ^0.13.1
+  smooth_page_indicator: ^1.1.0
+  shared_preferences: ^2.2.3
+  sizer: ^2.0.15
+  page_transition: ^2.1.0
+
+
+flutter_icons: # flutter_launcher_icons configuration
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/icon.png"
+  min_sdk_android: 21
+
+flutter_native_splash: # flutter_native_splash configuration
+  color: "#141414"
+  image: assets/logos/logo.png
+  android: true
+  ios: true
+  web: false
+
+  android_12:
+    image: assets/logos/logo.png
+    icon_background_color: "#141414"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/logos/
+    - assets/images/
+
+  fonts:
+    - family: pjs
+      fonts:
+        - asset: fonts/PlusJakartaSans-Regular.ttf
+
+    - family: pjs-semi-bold
+      fonts:
+        - asset: fonts/PlusJakartaSans-SemiBold.ttf
+
+    - family: pjs-bold
+      fonts:
+        - asset: fonts/PlusJakartaSans-Bold.ttf
+
+    - family: pjs-medium
+      fonts:
+        - asset: fonts/PlusJakartaSans-Medium.ttf
+
+    - family: pjs-extra-bold
+      fonts:
+        - asset: fonts/PlusJakartaSans-ExtraBold.ttf
+    
+    - family: pjs-extra-light
+      fonts:
+        - asset: fonts/PlusJakartaSans-ExtraLight.ttf
+
+    - family: pjs-italic
+      fonts:
+        - asset: fonts/PlusJakartaSans-Italic.ttf
+
+    - family: pjs-light
+      fonts:
+        - asset: fonts/PlusJakartaSans-Light.ttf
