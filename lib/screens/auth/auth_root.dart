@@ -5,6 +5,8 @@ import 'package:timeset/widgets/auth_widgets/auth_button.dart';
 import 'package:timeset/widgets/general_widgets/app_bar_with_back_button.dart';
 import 'package:timeset/widgets/auth_widgets/social_button.dart';
 
+import 'login_screen.dart';
+
 class AuthRoot extends StatefulWidget {
   static const routeName = '/AuthRoot';
 
@@ -114,7 +116,10 @@ class _AuthRootState extends State<AuthRoot> {
                               children: [
                                 AuthButton(
                                   text: "Sign in with password",
-                                  function: () {},
+                                  function: () => Navigator.pushNamed(
+                                    context,
+                                    LoginScreen.routeName,
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 18,
@@ -152,7 +157,7 @@ class _AuthRootState extends State<AuthRoot> {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -38,15 +38,24 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "TimeSet",
             theme: ThemeData(
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.transparent,
+              ),
               primaryColor: HexColor("#9CBB30"),
               fontFamily: 'pjs',
               scaffoldBackgroundColor: HexColor("#141414"),
-              textTheme: const TextTheme(
-                bodyLarge: TextStyle(
+              textTheme: TextTheme(
+                headlineMedium: TextStyle(
+                  fontFamily: "pjs-bold",
+                  color: Colors.white,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+                bodyLarge: const TextStyle(
                   fontFamily: "pjs-bold",
                   color: Colors.white,
                 ),
-                bodyMedium: TextStyle(
+                bodyMedium: const TextStyle(
                   fontFamily: "pjs",
                   color: Colors.white,
                 ),

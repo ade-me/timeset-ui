@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
@@ -35,10 +36,7 @@ class AppBarWithBackButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     padding: const EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.arrow_back_rounded,
-                      color: HexColor("#ffffff"),
-                    ),
+                    child: SvgPicture.asset('assets/icons/back.svg'),
                   ),
                 ),
               )

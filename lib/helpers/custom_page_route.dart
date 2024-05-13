@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../screens/auth/auth_root.dart';
+import '../screens/auth/login_screen.dart';
 
 class CustomPageRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -9,6 +10,11 @@ class CustomPageRoute {
       case AuthRoot.routeName:
         return _pageTransition(
           child: const AuthRoot(),
+          settings: settings,
+        );
+      case LoginScreen.routeName:
+        return _pageTransition(
+          child: const LoginScreen(),
           settings: settings,
         );
       default:

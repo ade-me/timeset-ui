@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: ^2.2.3
   sizer: ^2.0.15
   page_transition: ^2.1.0
+  flutter_svg: ^2.0.10+1
 
 
 flutter_icons: # flutter_launcher_icons configuration
@@ -58,31 +59,25 @@ flutter:
     - family: pjs
       fonts:
         - asset: fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
 
-    - family: pjs-semi-bold
-      fonts:
         - asset: fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
 
-    - family: pjs-bold
-      fonts:
         - asset: fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
 
-    - family: pjs-medium
-      fonts:
         - asset: fonts/PlusJakartaSans-Medium.ttf
+          weight: 600
 
-    - family: pjs-extra-bold
-      fonts:
         - asset: fonts/PlusJakartaSans-ExtraBold.ttf
-    
-    - family: pjs-extra-light
-      fonts:
+          weight: 900
+
         - asset: fonts/PlusJakartaSans-ExtraLight.ttf
+          weight: 200
 
-    - family: pjs-italic
-      fonts:
         - asset: fonts/PlusJakartaSans-Italic.ttf
+          style: italic
 
-    - family: pjs-light
-      fonts:
         - asset: fonts/PlusJakartaSans-Light.ttf
+          weight: 300
