@@ -63,7 +63,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       keyboardType: widget.textInputType,
       style: textTheme.bodyMedium,
       cursorColor: theme.primaryColor,
-      obscureText: isObscure,
+      obscureText: widget.isPassword ? isObscure : false,
       decoration: InputDecoration(
         filled: true,
         fillColor: _hasFocus
@@ -98,14 +98,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
           bottom: 2.5.h,
         ),
         suffixIconColor: Colors.white,
+        suffixIconConstraints: BoxConstraints(minWidth: 12.w),
         suffixIcon: Visibility(
           visible: widget.isPassword,
-          child: IconButton(
-            onPressed: toggleIsObscure,
-            icon: Icon(
-              isObscure
-                  ? Icons.visibility_outlined
-                  : Icons.visibility_off_outlined,
+          child: Container(
+            margin: EdgeInsets.only(right: 5.sp),
+            child: IconButton(
+              onPressed: toggleIsObscure,
+              icon: Icon(
+                isObscure
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+              ),
             ),
           ),
         ),

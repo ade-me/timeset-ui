@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:sizer/sizer.dart';
 
 import '../models/onboarding_info.dart';
 
 class OnboardingItems {
   static List<OnboardingInfo> items = [
     OnboardingInfo(
-      title: RichText(
-        text: TextSpan(
-          style: const TextStyle(
-            fontSize: 30,
-            fontFamily: "pjs-bold",
+      title: Text.rich(
+        TextSpan(
+          style: TextStyle(
+            fontSize: 21.sp,
+            fontWeight: FontWeight.w600,
           ),
           children: [
             const TextSpan(
@@ -33,11 +34,11 @@ class OnboardingItems {
       image: "assets/images/onboarding1.png",
     ),
     OnboardingInfo(
-        title: RichText(
-          text: TextSpan(
-            style: const TextStyle(
-              fontSize: 30,
-              fontFamily: "pjs-bold",
+        title: Text.rich(
+          TextSpan(
+            style: TextStyle(
+              fontSize: 21.sp,
+              fontWeight: FontWeight.w600,
             ),
             children: [
               const TextSpan(
@@ -57,11 +58,11 @@ class OnboardingItems {
             "Explore TimeSet for captivating videos and effortless shopping, all in one app.",
         image: "assets/images/onboarding2.png"),
     OnboardingInfo(
-      title: RichText(
-        text: TextSpan(
-          style: const TextStyle(
-            fontSize: 30,
-            fontFamily: "pjs-bold",
+      title: Text.rich(
+        TextSpan(
+          style: TextStyle(
+            fontSize: 21.sp,
+            fontWeight: FontWeight.w600,
           ),
           children: [
             const TextSpan(

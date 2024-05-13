@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../screens/auth/forgot_password_screen.dart';
 import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/auth_widgets/auth_social_options.dart';
@@ -110,10 +111,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Forgot your password?',
-                            style: TextStyle(
-                              color: theme.primaryColor,
+                          GestureDetector(
+                            onTap: () => Navigator.pushReplacementNamed(
+                              context,
+                              ForgotPasswordScreen.routeName,
+                            ),
+                            child: Text(
+                              'Forgot your password?',
+                              style: TextStyle(
+                                color: theme.primaryColor,
+                              ),
                             ),
                           ),
                         ],

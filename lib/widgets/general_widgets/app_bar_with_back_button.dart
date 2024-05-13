@@ -16,7 +16,6 @@ class AppBarWithBackButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.sp),
       child: Stack(
-        alignment: Alignment.center,
         children: [
           // back button
           Row(
@@ -30,17 +29,20 @@ class AppBarWithBackButton extends StatelessWidget {
                     border: Border.all(color: HexColor("#2C2C2C"), width: 1),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  padding: EdgeInsets.all(10.sp),
+                  padding: EdgeInsets.all(9.sp),
                   child: SvgPicture.asset('assets/icons/back.svg'),
                 ),
-              )
+              ),
+              SizedBox(
+                width: 15.sp,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
             ],
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14.sp,
-            ),
           ),
         ],
       ),

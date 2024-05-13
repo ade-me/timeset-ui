@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:timeset/screens/auth/create_new_password_screen.dart';
+import 'package:timeset/screens/auth/forgot_password_screen.dart';
 
 import '../screens/auth/auth_root.dart';
 import '../screens/auth/create_account_screen.dart';
@@ -21,6 +23,16 @@ class CustomPageRoute {
       case CreateAccountScreen.routeName:
         return _pageTransition(
           child: const CreateAccountScreen(),
+          settings: settings,
+        );
+      case ForgotPasswordScreen.routeName:
+        return _pageTransition(
+          child: const ForgotPasswordScreen(),
+          settings: settings,
+        );
+      case CreateNewPassword.routeName:
+        return _pageTransition(
+          child: const CreateNewPassword(),
           settings: settings,
         );
       default:
