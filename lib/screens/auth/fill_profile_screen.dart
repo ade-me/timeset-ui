@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/models/country.dart';
-import 'package:timeset/state_management/country_provider.dart';
-import 'package:timeset/widgets/general_widgets/custom_bottom_sheet.dart';
-import 'package:timeset/widgets/general_widgets/custom_text_field.dart';
 
+import '../../models/country.dart';
+import '../../state_management/country_provider.dart';
+import '../../widgets/general_widgets/custom_bottom_sheet.dart';
+import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/auth_widgets/gender_select.dart';
 import '../../helpers/profile_interest_items.dart';
 import '../../widgets/auth_widgets/custom_chip.dart';
