@@ -16,7 +16,7 @@ class Country {
       code: json['code'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
-      dialCode: json['dialCode'] as String,
+      dialCode: json['dial_code'] as String,
     );
   }
 
