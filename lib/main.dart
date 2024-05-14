@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
                 bodySmall: TextStyle(
                   fontFamily: "pjs",
                   color: Colors.white,
-                  fontSize: 8.sp,
+                  fontSize: 10.sp,
                 ),
               ),
               textSelectionTheme: TextSelectionThemeData(

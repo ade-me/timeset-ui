@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/screens/auth/fill_profile_screen.dart';
 
 import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
@@ -104,7 +105,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         text: 'Sign Up',
                         isDisabled:
                             emailHasInput && passwordHasInput ? false : true,
-                        function: () {},
+                        function: () => Navigator.pushReplacementNamed(
+                          context,
+                          FillProfileScreen.routeName,
+                        ),
                       ),
                     ],
                   ),

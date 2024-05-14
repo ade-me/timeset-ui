@@ -4,12 +4,16 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 class AppBarWithBackButton extends StatelessWidget {
+  final String title;
+  final Function? function;
+  final bool hasCustomFunction;
+
   const AppBarWithBackButton({
     super.key,
     this.title = "",
+    this.function,
+    this.hasCustomFunction = false,
   });
-
-  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,9 @@ class AppBarWithBackButton extends StatelessWidget {
             children: [
               InkWell(
                 borderRadius: BorderRadius.circular(30),
-                onTap: () => Navigator.of(context).pop(),
+                onTap: () => hasCustomFunction
+                    ? function!()
+                    : Navigator.of(context).pop(),
                 splashColor: Colors.white10,
                 child: Container(
                   decoration: BoxDecoration(
