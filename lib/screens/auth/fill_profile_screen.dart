@@ -34,6 +34,20 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
     });
   }
 
+  void goBack() {
+    pageViewController.previousPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutCirc,
+    );
+  }
+
+  void nextPage() {
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutCirc,
+    );
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -106,10 +120,7 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
                           AppBarWithBackButton(
                             hasCustomFunction: true,
                             function: () {
-                              pageViewController.previousPage(
-                                duration: const Duration(milliseconds: 600),
-                                curve: Curves.easeInOutCirc,
-                              );
+                              goBack();
                             },
                             title: "Tell us about yourself",
                           ),
@@ -166,10 +177,7 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
                           AppBarWithBackButton(
                             hasCustomFunction: true,
                             function: () {
-                              pageViewController.previousPage(
-                                duration: const Duration(milliseconds: 600),
-                                curve: Curves.easeInOutCirc,
-                              );
+                              goBack();
                             },
                             title: "When is your birthday?",
                           ),
@@ -254,10 +262,7 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
                         ? true
                         : false,
                 function: () {
-                  pageViewController.nextPage(
-                    duration: const Duration(milliseconds: 600),
-                    curve: Curves.easeInOutCirc,
-                  );
+                  nextPage();
                 },
               ),
             )

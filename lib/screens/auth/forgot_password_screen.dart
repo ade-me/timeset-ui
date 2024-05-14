@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/helpers/replace_chars.dart';
-import 'package:timeset/screens/auth/create_new_password_screen.dart';
 
+import '../../helpers/replace_chars.dart';
+import '../../screens/auth/create_new_password_screen.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/auth_widgets/contact_detail_select.dart';
 import '../../widgets/auth_widgets/otp_textfield.dart';
@@ -22,15 +22,17 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final emailTextController = TextEditingController();
   final otpTextController = TextEditingController();
+  final pageViewController = PageController();
 
   final emailFocusNode = FocusNode();
   final otpFocusNode = FocusNode();
 
   bool emailHasInput = false;
   bool otpHasInput = false;
-  Map<String, dynamic> userDetails = {};
-  String selectedUserDetail = "";
+  Map<String, dynamic> userDetails = {"phone": "", "email": ""};
+  String selectedUserDetail = "email";
   bool isEnterOTP = false;
+  int currentPage = 0;
 
   void checkEmailHasInput() => setState(
         () => emailTextController.text.isNotEmpty
@@ -55,6 +57,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         });
   }
 
+  void handlePageViewChanged(int currentPageIndex) {
+    setState(() {
+      currentPage = currentPageIndex;
+    });
+  }
+
+  void goBack() {
+    pageViewController.previousPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutCirc,
+    );
+  }
+
+  void nextPage() {
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOutCirc,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -69,6 +91,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     emailTextController.dispose();
     otpTextController.dispose();
+    pageViewController.dispose();
 
     emailFocusNode.dispose();
     otpFocusNode.dispose();
@@ -84,163 +107,197 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                child: GeneralAppPadding(
-                  child: isEnterOTP
-                      ? Column(
-                          children: [
-                            SizedBox(height: 1.h),
-                            const AppBarWithBackButton(
-                              title: "Forgot Password",
+              child: PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: pageViewController,
+                onPageChanged: handlePageViewChanged,
+                children: [
+                  SingleChildScrollView(
+                    child: GeneralAppPadding(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 1.h),
+                          const AppBarWithBackButton(
+                            title: "Forgot Password",
+                          ),
+                          sizedBox,
+                          Align(
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              "assets/images/forgot1.png",
+                              width: 85.w,
                             ),
-                            sizedBox,
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 8.h,
+                          ),
+                          SizedBox(height: 7.h),
+                          Text(
+                            "Enter your email so we can find your account",
+                            style: TextStyle(fontSize: 12.sp),
+                          ),
+                          SizedBox(height: 3.h),
+                          CustomTextField(
+                            textInputType: TextInputType.emailAddress,
+                            controller: emailTextController,
+                            focusNode: emailFocusNode,
+                            iconName: 'email',
+                            hintText: 'Email',
+                          ),
+                          SizedBox(height: 3.h),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: GeneralAppPadding(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 1.h),
+                          AppBarWithBackButton(
+                            title: "Forgot Password",
+                            hasCustomFunction: true,
+                            function: () {
+                              goBack();
+                            },
+                          ),
+                          sizedBox,
+                          Align(
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              "assets/images/forgot1.png",
+                              width: 85.w,
+                            ),
+                          ),
+                          SizedBox(height: 7.h),
+                          Text(
+                            "Select which contact details we should use to reset your password",
+                            style: TextStyle(fontSize: 12.sp),
+                          ),
+                          SizedBox(height: 3.h),
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  onSelection("phone");
+                                },
+                                child: ContactDetailSelect(
+                                  via: "SMS",
+                                  text: userDetails["phone"],
+                                  isSelected: selectedUserDetail == "phone"
+                                      ? true
+                                      : false,
                                 ),
-                                Text(
-                                  "A code has been sent to ${selectedUserDetail == "email" ? replaceEmail(userDetails[selectedUserDetail]) : replacePhone(userDetails[selectedUserDetail])}",
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  onSelection("email");
+                                },
+                                child: ContactDetailSelect(
+                                  via: "Email",
+                                  text: userDetails["email"],
+                                  isSelected: selectedUserDetail == "email"
+                                      ? true
+                                      : false,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 3.h),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: GeneralAppPadding(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 1.h),
+                          AppBarWithBackButton(
+                            title: "Forgot Password",
+                            hasCustomFunction: true,
+                            function: () {
+                              goBack();
+                            },
+                          ),
+                          sizedBox,
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Text(
+                                "A code has been sent to ${selectedUserDetail == "email" ? replaceEmail(userDetails[selectedUserDetail]) : replacePhone(userDetails[selectedUserDetail])}",
+                                style: TextStyle(
+                                  fontSize: 11.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              OTPTextField(
+                                pinController: otpTextController,
+                                focusNode: otpFocusNode,
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              Text.rich(
+                                TextSpan(
                                   style: TextStyle(
                                     fontSize: 11.sp,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                OTPTextField(
-                                  pinController: otpTextController,
-                                  focusNode: otpFocusNode,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    style: TextStyle(
-                                      fontSize: 11.sp,
+                                  children: [
+                                    const TextSpan(
+                                      text: "Resend code in ",
                                     ),
-                                    children: [
-                                      const TextSpan(
-                                        text: "Resend code in ",
+                                    TextSpan(
+                                      text: "5 ",
+                                      style: TextStyle(
+                                        color: HexColor("#9CBB30"),
                                       ),
-                                      TextSpan(
-                                        text: "5 ",
-                                        style: TextStyle(
-                                          color: HexColor("#9CBB30"),
-                                        ),
-                                      ),
-                                      const TextSpan(
-                                        text: "s",
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    const TextSpan(
+                                      text: "s",
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            )
-                          ],
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 1.h),
-                            const AppBarWithBackButton(
-                              title: "Forgot Password",
-                            ),
-                            sizedBox,
-                            Align(
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                "assets/images/forgot1.png",
-                                width: 85.w,
                               ),
-                            ),
-                            SizedBox(height: 7.h),
-                            Text(
-                              userDetails.isEmpty
-                                  ? "Enter your email so we can find your account"
-                                  : "Select which contact details we should use to reset your password",
-                              style: TextStyle(fontSize: 12.sp),
-                            ),
-                            SizedBox(height: 3.h),
-                            userDetails.isEmpty
-                                ? CustomTextField(
-                                    textInputType: TextInputType.emailAddress,
-                                    controller: emailTextController,
-                                    focusNode: emailFocusNode,
-                                    iconName: 'email',
-                                    hintText: 'Email',
-                                  )
-                                : Column(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          onSelection("phone");
-                                        },
-                                        child: ContactDetailSelect(
-                                          via: "SMS",
-                                          text: userDetails["phone"],
-                                          isSelected:
-                                              selectedUserDetail == "phone"
-                                                  ? true
-                                                  : false,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          onSelection("email");
-                                        },
-                                        child: ContactDetailSelect(
-                                          via: "Email",
-                                          text: userDetails["email"],
-                                          isSelected:
-                                              selectedUserDetail == "email"
-                                                  ? true
-                                                  : false,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                            SizedBox(height: 3.h),
-                          ],
-                        ),
-                ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Padding(
               padding: EdgeInsets.all(5.w),
-              child: isEnterOTP
-                  ? AuthButton(
-                      text: 'Verify',
-                      isDisabled: otpHasInput ? false : true,
-                      function: () => Navigator.pushReplacementNamed(
-                        context,
-                        CreateNewPassword.routeName,
-                      ),
-                    )
-                  : userDetails.isEmpty
-                      ? AuthButton(
-                          text: 'Continue',
-                          isDisabled: emailHasInput ? false : true,
-                          function: () {
-                            updateUserDetails();
-                          },
-                        )
-                      : AuthButton(
-                          text: 'Continue',
-                          isDisabled:
-                              selectedUserDetail.isNotEmpty ? false : true,
-                          function: () {
-                            setState(
-                              () {
-                                isEnterOTP = true;
-                              },
-                            );
-                          },
-                        ),
+              child: AuthButton(
+                text: currentPage == 2 ? "Verify" : 'Continue',
+                isDisabled: currentPage == 0 && !emailHasInput
+                    ? true
+                    : currentPage == 1 && selectedUserDetail.isEmpty
+                        ? true
+                        : currentPage == 2 && !otpHasInput
+                            ? true
+                            : false,
+                function: () {
+                  currentPage == 0
+                      ? {updateUserDetails(), nextPage()}
+                      : currentPage == 2
+                          ? {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                CreateNewPassword.routeName,
+                              ),
+                            }
+                          : nextPage();
+                },
+              ),
             ),
           ],
         ),
