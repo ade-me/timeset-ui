@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import 'constants/app_colors.dart';
 import 'helpers/custom_page_route.dart';
 import 'screens/auth/onboarding.dart';
 import 'screens/home_screen.dart';
@@ -45,9 +45,9 @@ class MyApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.transparent,
               ),
-              primaryColor: HexColor("#9CBB30"),
+              primaryColor: AppColors.primary,
               fontFamily: 'pjs',
-              scaffoldBackgroundColor: HexColor("#141414"),
+              scaffoldBackgroundColor: AppColors.scaffoldColor,
               textTheme: TextTheme(
                 headlineMedium: TextStyle(
                   fontFamily: "pjs",
@@ -72,9 +72,9 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               textSelectionTheme: TextSelectionThemeData(
-                cursorColor: HexColor("#9CBB30"),
-                selectionColor: HexColor("#2C2C2C"),
-                selectionHandleColor: HexColor("#9CBB30"),
+                cursorColor: AppColors.primary,
+                selectionColor: AppColors.selectionColor,
+                selectionHandleColor: AppColors.primary,
               ),
             ),
             home: Provider.of<AuthProvider>(context).isLoggedin
