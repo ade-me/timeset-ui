@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField({
-    super.key,
-    this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
-    required this.controller,
-    this.isPassword = false,
-    required this.focusNode,
-    required this.hintText,
-    required this.iconName,
-  });
+  const CustomTextField(
+      {super.key,
+      this.textInputAction = TextInputAction.next,
+      this.textInputType = TextInputType.text,
+      this.hasCustomIcon = false,
+      this.customIcon = Icons.person,
+      required this.controller,
+      this.isPassword = false,
+      required this.focusNode,
+      required this.hintText,
+      required this.iconName,
+      this.hasDropdown = false,
+      this.onDropdown,
+      this.minWidth = 15,
+      this.flagUrl = "https://country-code-au6g.vercel.app/US.svg"});
 
   final TextEditingController controller;
   final TextInputAction textInputAction;
@@ -21,6 +27,12 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final String hintText;
   final String iconName;
+  final bool hasCustomIcon;
+  final IconData customIcon;
+  final bool hasDropdown;
+  final Function()? onDropdown;
+  final double minWidth;
+  final String flagUrl;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -87,11 +99,53 @@ class _CustomTextFieldState extends State<CustomTextField> {
             width: 1.sp,
           ),
         ),
-        prefixIcon: IconButton(
-          onPressed: null,
-          icon: SvgPicture.asset('assets/icons/${widget.iconName}.svg'),
+        prefixIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: widget.hasCustomIcon
+                  ? Icon(
+                      widget.customIcon,
+                      color: HexColor("#9CBB30"),
+                    )
+                  : IconButton(
+                      onPressed: null,
+                      icon: SvgPicture.asset(
+                          'assets/icons/${widget.iconName}.svg'),
+                    ),
+            ),
+            widget.hasDropdown
+                ? SizedBox(
+                    width: 10.sp,
+                  )
+                : const SizedBox(
+                    width: 0,
+                  ),
+            widget.hasDropdown
+                ? GestureDetector(
+                    onTap: widget.onDropdown,
+                    child: Row(
+                      children: [
+                        SvgPicture.network(
+                          widget.flagUrl,
+                          width: 17.sp,
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Colors.white,
+                          size: 13.sp,
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox(
+                    width: 0,
+                  )
+          ],
         ),
-        prefixIconConstraints: BoxConstraints(minWidth: 15.w),
+        prefixIconConstraints: BoxConstraints(minWidth: widget.minWidth.w),
         contentPadding: EdgeInsets.only(
           left: 5.w,
           top: 2.5.h,

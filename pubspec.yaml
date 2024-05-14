@@ -23,7 +23,7 @@ dependencies:
   page_transition: ^2.1.0
   flutter_svg: ^2.0.10+1
   pinput: ^4.0.0
-  http: ^1.2.1
+  http: ^1.2.0
 
 
 flutter_icons: # flutter_launcher_icons configuration

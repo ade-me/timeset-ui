@@ -16,13 +16,12 @@ class Country {
       code: json['code'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
-      dialCode: json['dialCode'] as String,
+      dialCode: json['dial_code'] as String,
     );
   }
 
   String imageUrl() {
-    String imageUrl =
-        'https://country-code-au6g.vercel.app/Country.json/$image';
+    String imageUrl = 'https://country-code-au6g.vercel.app/$image';
 
     return imageUrl;
   }

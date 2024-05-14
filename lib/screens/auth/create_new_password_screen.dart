@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../widgets/general_widgets/custom_bottom_sheet.dart';
+import '../../widgets/general_widgets/custom_message_bottom_sheet.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
@@ -118,7 +118,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                 isDisabled:
                     passwordHasInput && confirmPasswordHasInput ? false : true,
                 function: () {
-                  CustomBottomSheet.showBottomSheet(
+                  CustomMessageBottomSheet.showBottomSheet(
                     context,
                     'Successful!',
                     'You have successfully reset your password, you will be redirected to the login page in a few seconds',
