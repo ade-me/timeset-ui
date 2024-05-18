@@ -102,7 +102,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     var sizedBox = SizedBox(height: 4.h);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [

@@ -60,7 +60,6 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
     var sizedBox = SizedBox(height: 4.h);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [

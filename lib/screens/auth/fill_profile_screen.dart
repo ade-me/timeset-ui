@@ -142,7 +142,6 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
     var textTheme = theme.textTheme;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [
