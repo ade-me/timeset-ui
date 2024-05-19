@@ -4,22 +4,25 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField(
-      {super.key,
-      this.textInputAction = TextInputAction.next,
-      this.textInputType = TextInputType.text,
-      this.hasCustomIcon = false,
-      this.customIcon = Icons.person,
-      required this.controller,
-      this.isPassword = false,
-      required this.focusNode,
-      required this.hintText,
-      required this.iconName,
-      this.hasDropdown = false,
-      this.onDropdown,
-      this.minWidth = 15,
-      this.flagUrl = "https://country-code-au6g.vercel.app/US.svg"});
+  const CustomTextField({
+    super.key,
+    this.textInputAction = TextInputAction.next,
+    this.textInputType = TextInputType.text,
+    this.hasCustomIcon = false,
+    this.customIcon = Icons.person,
+    required this.controller,
+    this.isPassword = false,
+    required this.focusNode,
+    required this.hintText,
+    this.iconName = '',
+    this.hasDropdown = false,
+    this.onDropdown,
+    this.minWidth = 15,
+    this.flagUrl = "https://country-code-au6g.vercel.app/US.svg",
+    this.onEditingComplete,
+  });
 
+  final Function()? onEditingComplete;
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
@@ -168,6 +171,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
       ),
+      onEditingComplete: widget.onEditingComplete,
     );
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   pinput: ^4.0.0
   http: ^1.2.0
   fluttertoast: ^8.2.5
+  image_picker: ^1.1.1
 
 
 flutter_icons: # flutter_launcher_icons configuration
