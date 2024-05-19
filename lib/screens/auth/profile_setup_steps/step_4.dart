@@ -189,14 +189,20 @@ class _Step4State extends State<Step4> {
               alignment: Alignment.center,
               child: Stack(
                 children: [
-                  CircleAvatar(
-                    backgroundColor: HexColor("#2C2C2C"),
-                    radius: 50.sp,
-                    child: SvgPicture.asset(
-                      'assets/images/person.svg',
-                      width: 43.sp,
-                    ),
-                  ),
+                  file!.existsSync()
+                      ? CircleAvatar(
+                          backgroundColor: HexColor("#2C2C2C"),
+                          radius: 50.sp,
+                          backgroundImage: FileImage(file!),
+                        )
+                      : CircleAvatar(
+                          backgroundColor: HexColor("#2C2C2C"),
+                          radius: 50.sp,
+                          child: SvgPicture.asset(
+                            'assets/images/person.svg',
+                            width: 43.sp,
+                          ),
+                        ),
                   Positioned(
                     bottom: 0,
                     right: 0,
