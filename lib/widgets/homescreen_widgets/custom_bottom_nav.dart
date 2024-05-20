@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/widgets/homescreen_widgets/custom_homeplus_popup.dart';
 
 import 'bottom_nav_icon.dart';
 
@@ -54,7 +55,9 @@ class CustomBottomNav extends StatelessWidget {
                 ),
               ),
               splashColor: Colors.white10,
-              onPressed: () {},
+              onPressed: () {
+                CustomHomePlusPopUp.showHomePlusPopup(context);
+              },
               icon: Icon(
                 Icons.add,
                 size: 12.sp,

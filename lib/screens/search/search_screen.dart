@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             CustomTextField(
               textInputType: TextInputType.text,
-              textInputAction: TextInputAction.go,
+              textInputAction: TextInputAction.search,
               controller: searchTextController,
               focusNode: searchFocusNode,
               iconName: 'search_inactive',
