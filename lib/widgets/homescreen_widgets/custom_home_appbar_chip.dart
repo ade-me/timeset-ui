@@ -21,44 +21,48 @@ class CustomHomeAppBarChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      splashColor: Colors.white12,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 12.sp,
-          vertical: 7.sp,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? HexColor("#000000")
-              : !isSelected && text == "Discover"
-                  ? HexColor("#FF3131")
-                  : HexColor("#000000").withOpacity(0.4),
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(
-            color: HexColor("#ffffff").withOpacity(0.3),
-            width: 0.3.sp,
+    return Material(
+      color: isSelected
+          ? HexColor("#000000")
+          : !isSelected && text == "Discover"
+              ? HexColor("#FF3131")
+              : HexColor("#000000").withOpacity(0.4),
+      borderRadius: BorderRadius.circular(30),
+      child: InkWell(
+        onTap: onTap,
+        splashColor: Colors.white10,
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 12.sp,
+            vertical: 7.sp,
           ),
-        ),
-        child: Row(
-          children: [
-            SvgPicture.asset(
-              iconUrl,
-              color: isSelected ? HexColor("#9CBB30") : HexColor("#ffffff"),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: HexColor("#ffffff").withOpacity(0.3),
+              width: 0.3.sp,
             ),
-            SizedBox(
-              width: 5.sp,
-            ),
-            Text(
-              text,
-              style: TextStyle(
+          ),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                iconUrl,
                 color: isSelected ? HexColor("#9CBB30") : HexColor("#ffffff"),
-                fontWeight: FontWeight.w500,
-                fontSize: 10.sp,
               ),
-            ),
-          ],
+              SizedBox(
+                width: 5.sp,
+              ),
+              Text(
+                text,
+                style: TextStyle(
+                  color: isSelected ? HexColor("#9CBB30") : HexColor("#ffffff"),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 10.sp,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

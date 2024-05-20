@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:timeset/screens/home_screen.dart';
 
-import '../../screens/auth/create_new_password_screen.dart';
-import '../../screens/auth/fill_profile_screen.dart';
-import '../../screens/auth/forgot_password_screen.dart';
+import '../screens/home_screen.dart';
+import '../screens/search/search_result_screen.dart';
+import '../screens/auth/create_new_password_screen.dart';
+import '../screens/auth/fill_profile_screen.dart';
+import '../screens/auth/forgot_password_screen.dart';
 import '../screens/auth/auth_root.dart';
 import '../screens/auth/create_account_screen.dart';
 import '../screens/auth/login_screen.dart';
@@ -45,6 +46,11 @@ class CustomPageRoute {
       case HomeScreen.routeName:
         return _pageTransition(
           child: const HomeScreen(),
+          settings: settings,
+        );
+      case SearchResultScreen.routeName:
+        return _pageTransition(
+          child: const SearchResultScreen(),
           settings: settings,
         );
       default:

@@ -41,6 +41,7 @@ class _FeedScreenState extends State<FeedScreen> {
       children: [
         CustomHomeScreenAppBar(
           pageController: pageController,
+          currentIndex: currentIndex,
         ),
         Expanded(
           child: PageView(

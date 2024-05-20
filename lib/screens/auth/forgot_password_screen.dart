@@ -289,7 +289,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ? {updateUserDetails(), nextPage()}
                       : currentPage == 2
                           ? {
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamed(
                                 context,
                                 CreateNewPassword.routeName,
                               ),

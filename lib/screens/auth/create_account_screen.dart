@@ -105,7 +105,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         text: 'Sign Up',
                         isDisabled:
                             emailHasInput && passwordHasInput ? false : true,
-                        function: () => Navigator.pushReplacementNamed(
+                        function: () => Navigator.pushNamed(
                           context,
                           FillProfileScreen.routeName,
                         ),
@@ -119,7 +119,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             AuthAlternateActionText(
               alternateText: 'Already have an account? ',
               actionText: 'Sign In',
-              function: () => Navigator.pushReplacementNamed(
+              function: () => Navigator.pushNamed(
                 context,
                 LoginScreen.routeName,
               ),

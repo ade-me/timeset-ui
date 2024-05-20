@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Sign In',
                         isDisabled:
                             emailHasInput && passwordHasInput ? false : true,
-                        function: () => Navigator.pushReplacementNamed(
+                        function: () => Navigator.pushNamed(
                           context,
                           HomeScreen.routeName,
                         ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: () => Navigator.pushReplacementNamed(
+                            onTap: () => Navigator.pushNamed(
                               context,
                               ForgotPasswordScreen.routeName,
                             ),
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
             AuthAlternateActionText(
               alternateText: 'Don\'t have an account? ',
               actionText: 'Sign Up',
-              function: () => Navigator.pushReplacementNamed(
+              function: () => Navigator.pushNamed(
                 context,
                 CreateAccountScreen.routeName,
               ),
