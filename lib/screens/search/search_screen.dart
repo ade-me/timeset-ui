@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/widgets/general_widgets/custom_text_field.dart';
-import 'package:timeset/widgets/general_widgets/general_app_padding.dart';
+
+import '../../widgets/general_widgets/custom_text_field.dart';
+import '../../widgets/general_widgets/general_app_padding.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
