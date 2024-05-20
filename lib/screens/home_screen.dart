@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 import '../screens/feed_screen.dart';
 import '../screens/search/search_screen.dart';
-import '../../widgets/homescreen_widgets/custom_home_app_bar.dart';
 import '../../widgets/homescreen_widgets/custom_bottom_nav.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -48,12 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: currentIndex == 1
-            ? null
-            : const PreferredSize(
-                preferredSize: Size.fromHeight(80),
-                child: CustomHomeScreenAppBar(),
-              ),
         resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: Alignment.bottomCenter,

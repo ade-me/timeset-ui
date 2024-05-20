@@ -46,10 +46,10 @@ class CustomBottomNav extends StatelessWidget {
             ),
             IconButton(
               style: ButtonStyle(
-                padding: const WidgetStatePropertyAll(
+                padding: const MaterialStatePropertyAll(
                   EdgeInsets.all(8),
                 ),
-                backgroundColor: WidgetStatePropertyAll(
+                backgroundColor: MaterialStatePropertyAll(
                   HexColor("#9CBB30"),
                 ),
               ),
