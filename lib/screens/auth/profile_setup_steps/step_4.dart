@@ -9,9 +9,11 @@ import 'package:sizer/sizer.dart';
 
 import '../../../models/country.dart';
 import '../../../state_management/country_provider.dart';
+import '../../../widgets/auth_widgets/country_list_tile.dart';
 import '../../../widgets/auth_widgets/image_selector_option_tile.dart';
 import '../../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../../widgets/general_widgets/custom_bottom_sheet.dart';
+import '../../../widgets/general_widgets/custom_shimmer.dart';
 import '../../../widgets/general_widgets/custom_text_field.dart';
 import '../../../widgets/general_widgets/general_app_padding.dart';
 
@@ -297,70 +299,7 @@ class _Step4State extends State<Step4> {
               onDropdown: () async {
                 getCountries();
                 phoneTextController.text = '${widget.currentCountry.dialCode} ';
-                CustomBottomSheet.showBottomSheet(
-                  context,
-                  Consumer<CountryProvider>(
-                    builder: (context, countryProvider, _) {
-                      if (countryProvider.isLoading) {
-                        return Padding(
-                          padding: EdgeInsets.all(15.sp),
-                          child: const CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: countryProvider.countries.length,
-                            itemBuilder: (context, index) {
-                              final country = countryProvider.countries[index];
-                              return Material(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(30),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-
-                                    widget.getSelectedCountry(country);
-                                  },
-                                  splashColor: Colors.white10,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 15.sp,
-                                      vertical: 10.sp,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            SvgPicture.network(
-                                              country.imageUrl(),
-                                              width: 20.sp,
-                                            ),
-                                            SizedBox(
-                                              width: 10.sp,
-                                            ),
-                                            Text(
-                                              country.name,
-                                              style: TextStyle(fontSize: 12.sp),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(country.dialCode)
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                );
+                showCountryBottomSheet();
               },
             ),
             SizedBox(
@@ -385,6 +324,43 @@ class _Step4State extends State<Step4> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void showCountryBottomSheet() {
+    CustomBottomSheet.showBottomSheet(
+      context,
+      Consumer<CountryProvider>(
+        builder: (context, countryProvider, _) {
+          if (countryProvider.isLoading) {
+            return Expanded(
+              child: ListView.builder(
+                itemCount: 15,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (ctx, _) => CustomShimmer(
+                  height: 5.h,
+                  width: 100.w,
+                  margin: EdgeInsets.all(15.sp),
+                ),
+              ),
+            );
+          } else {
+            return Expanded(
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: countryProvider.countries.length,
+                itemBuilder: (context, index) {
+                  final country = countryProvider.countries[index];
+                  return CountryListTile(
+                    country: country,
+                    getCountry: widget.getSelectedCountry,
+                  );
+                },
+              ),
+            );
+          }
+        },
       ),
     );
   }
