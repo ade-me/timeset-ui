@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/screens/home_screen.dart';
 
 import '../../screens/auth/forgot_password_screen.dart';
 import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
@@ -105,7 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Sign In',
                         isDisabled:
                             emailHasInput && passwordHasInput ? false : true,
-                        function: () {},
+                        function: () => Navigator.pushReplacementNamed(
+                          context,
+                          HomeScreen.routeName,
+                        ),
                       ),
                       SizedBox(height: 3.h),
                       Row(

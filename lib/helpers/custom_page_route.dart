@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:timeset/screens/home_screen.dart';
 
 import '../../screens/auth/create_new_password_screen.dart';
 import '../../screens/auth/fill_profile_screen.dart';
@@ -39,6 +40,11 @@ class CustomPageRoute {
       case FillProfileScreen.routeName:
         return _pageTransition(
           child: const FillProfileScreen(),
+          settings: settings,
+        );
+      case HomeScreen.routeName:
+        return _pageTransition(
+          child: const HomeScreen(),
           settings: settings,
         );
       default:

@@ -53,6 +53,7 @@ class _LoaderDialogState extends State<LoaderDialog>
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: Dialog(
+          elevation: 0,
           backgroundColor: Colors.transparent,
           child: Image.asset(
             'assets/logos/logo.png',
