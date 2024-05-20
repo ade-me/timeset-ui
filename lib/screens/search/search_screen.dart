@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/screens/search/search_result_screen.dart';
 
+import '../../screens/search/search_result_screen.dart';
 import '../../widgets/searchscreen_widgets/search_history_tile.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/general_app_padding.dart';
