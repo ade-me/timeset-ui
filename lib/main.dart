@@ -7,23 +7,24 @@ import 'constants/app_colors.dart';
 import 'helpers/custom_page_route.dart';
 import 'screens/auth/onboarding.dart';
 import 'screens/home_screen.dart';
-import 'services/shared_pref.dart';
+import 'state_management/shared_pref.dart';
 import 'state_management/auth_provider.dart';
 import 'state_management/country_provider.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPref sharedPref = SharedPref();
   await sharedPref.initSharedPref();
 
-  runApp(MyApp(onboarding: sharedPref.isOnboarding));
-
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool onboarding;
-  const MyApp({super.key, this.onboarding = false});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,13 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => CountryProvider(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => SharedPref(),
+          ),
         ],
         builder: (context, child) {
           return MaterialApp(
+            navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
             title: "TimeSet",
             theme: ThemeData(
@@ -77,7 +82,7 @@ class MyApp extends StatelessWidget {
                 selectionHandleColor: AppColors.primary,
               ),
             ),
-            home: Provider.of<AuthProvider>(context).isLoggedin
+            home: Provider.of<AuthProvider>(context).isLoggedIn
                 ? const HomeScreen()
                 : const Onboarding(),
             onGenerateRoute: CustomPageRoute.onGenerateRoute,

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -22,8 +24,10 @@ class CustomTextField extends StatefulWidget {
     this.onEditingComplete,
     this.onSubmitted,
     this.iconColor = Colors.white,
+    this.validator,
   });
 
+  final String? Function(String?)? validator;
   final Function()? onEditingComplete;
   final Function(String)? onSubmitted;
   final TextEditingController controller;
@@ -177,6 +181,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
         ),
       ),
+      validator: widget.validator,
       onEditingComplete: widget.onEditingComplete,
       onFieldSubmitted: widget.onSubmitted,
     );

@@ -46,7 +46,7 @@ class _SearchResultAppBarState extends State<SearchResultAppBar> {
         unselectedLabelColor: HexColor('#AEAEAE'),
         labelPadding: const EdgeInsets.symmetric(horizontal: 0),
         indicatorSize: TabBarIndicatorSize.tab,
-        overlayColor: const WidgetStatePropertyAll(Colors.white10),
+        overlayColor: const MaterialStatePropertyAll(Colors.white10),
         indicator: UnderlineTabIndicator(
           borderRadius: const BorderRadius.all(
             Radius.circular(10),
