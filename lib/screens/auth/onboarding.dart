@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../helpers/onboarding_items.dart';
 import '../../models/onboarding_info.dart';
+import '../../services/api_client.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import 'auth_root.dart';
 
@@ -23,6 +24,13 @@ class _OnboardingState extends State<Onboarding> {
 
   bool isLastPage = false;
   int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration.zero, () => ApiClient.setContext(context));
+  }
 
   @override
   Widget build(BuildContext context) {

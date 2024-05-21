@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 void showCustomLoader(
@@ -41,9 +40,8 @@ class _LoaderDialogState extends State<LoaderDialog>
 
   @override
   void dispose() {
-    super.dispose();
-
     _controller.dispose();
+    super.dispose();
   }
 
   @override

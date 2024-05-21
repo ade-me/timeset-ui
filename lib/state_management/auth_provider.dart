@@ -63,6 +63,8 @@ class AuthProvider extends ChangeNotifier {
               context, HomeScreen.routeName, (route) => false);
         }
       } else {
+        // List<dynamic> message = body['message'] as List<dynamic>;
+
         print('Error logging user in: ${body['message']}');
         _changeLoadingState(false);
         if (context.mounted) {
@@ -121,7 +123,71 @@ class AuthProvider extends ChangeNotifier {
               context, FillProfileScreen.routeName, (route) => false);
         }
       } else {
+        List<dynamic> message = body['message'] as List<dynamic>;
+
         print('Error creating user in: ${body['message']}');
+        _changeLoadingState(false);
+        if (context.mounted) {
+          showScaffoldMessenger(
+            scaffoldKey: scaffoldKey,
+            textContent: message.first,
+            context: context,
+          );
+
+          Navigator.pop(context);
+        }
+      }
+    } catch (e) {
+      print('Error creating user in: $e');
+      _changeLoadingState(false);
+      if (context.mounted) {
+        showScaffoldMessenger(
+          scaffoldKey: scaffoldKey,
+          textContent: 'An error occured, please try again.',
+          context: context,
+        );
+
+        Navigator.pop(context);
+      }
+    }
+  }
+
+  Future<void> forgotPassword({
+    required String email,
+    required String password,
+    required String confPassword,
+    required BuildContext context,
+    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+  }) async {
+    try {
+      _changeLoadingState(true);
+      showCustomLoader(context);
+
+      Response response = await AuthRepo.forgotPassword(
+        email: email,
+        password: password,
+        confPassword: confPassword,
+      );
+
+      dynamic body = jsonDecode(response.body);
+      int statusCode = response.statusCode;
+
+      if (statusCode == 200) {
+        _changeLoggedInState(true);
+        if (context.mounted) {
+          var sharedPref = Provider.of<SharedPref>(context, listen: false);
+
+          await sharedPref.setAuthToken(body['token'].toString());
+        }
+
+        _changeLoadingState(false);
+
+        if (context.mounted) {
+          // Navigator.pushNamedAndRemoveUntil(
+          //     context, FillProfileScreen.routeName, (route) => false);
+        }
+      } else {
+        print('Error changging password: ${body['message']}');
         _changeLoadingState(false);
         if (context.mounted) {
           showScaffoldMessenger(
@@ -134,7 +200,7 @@ class AuthProvider extends ChangeNotifier {
         }
       }
     } catch (e) {
-      print('Error creating user in: $e');
+      print('Error chnaging password user in: $e');
       _changeLoadingState(false);
       if (context.mounted) {
         showScaffoldMessenger(
