@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/screens/auth/fill_profile_screen.dart';
 
+import '../../state_management/auth_provider.dart';
 import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/auth_widgets/auth_social_options.dart';
@@ -58,6 +59,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     passwordFocusNode.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(height: 4.h);
@@ -66,68 +71,115 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: GeneralAppPadding(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 1.h),
-                      const AppBarWithBackButton(),
-                      sizedBox,
-                      Text(
-                        'Create Your Account',
-                        style: textTheme.headlineMedium,
+      body: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: GeneralAppPadding(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 1.h),
+                          const AppBarWithBackButton(),
+                          sizedBox,
+                          Text(
+                            'Create Your Account',
+                            style: textTheme.headlineMedium,
+                          ),
+                          sizedBox,
+                          CustomTextField(
+                            textInputType: TextInputType.emailAddress,
+                            controller: emailTextController,
+                            focusNode: emailFocusNode,
+                            iconName: 'email',
+                            hintText: 'Email',
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Email is required';
+                              }
+                              if (!value.contains('.com')) {
+                                return 'Enter a valid email address';
+                              }
+                              if (!value.contains('@')) {
+                                return 'Enter a valid email address';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 2.h),
+                          CustomTextField(
+                            textInputType: TextInputType.visiblePassword,
+                            textInputAction: TextInputAction.done,
+                            controller: passwordTextController,
+                            focusNode: passwordFocusNode,
+                            iconName: 'password',
+                            hintText: 'Password',
+                            isPassword: true,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Password is required';
+                              }
+                              if (value.length < 8 ||
+                                  !RegExp(r'[0-9]').hasMatch(value) ||
+                                  !RegExp(r'[!@#$%^&*(),.?":{}|<>]')
+                                      .hasMatch(value) ||
+                                  !RegExp(r'[A-Z]').hasMatch(value) ||
+                                  !RegExp(r'[a-z]').hasMatch(value)) {
+                                return 'Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 3.h),
+                          AuthButton(
+                            text: 'Sign Up',
+                            isDisabled: emailHasInput && passwordHasInput
+                                ? false
+                                : true,
+                            function: createUser,
+                          ),
+                        ],
                       ),
-                      sizedBox,
-                      CustomTextField(
-                        textInputType: TextInputType.emailAddress,
-                        controller: emailTextController,
-                        focusNode: emailFocusNode,
-                        iconName: 'email',
-                        hintText: 'Email',
-                      ),
-                      SizedBox(height: 2.h),
-                      CustomTextField(
-                        textInputType: TextInputType.visiblePassword,
-                        textInputAction: TextInputAction.done,
-                        controller: passwordTextController,
-                        focusNode: passwordFocusNode,
-                        iconName: 'password',
-                        hintText: 'Password',
-                        isPassword: true,
-                      ),
-                      SizedBox(height: 3.h),
-                      AuthButton(
-                        text: 'Sign Up',
-                        isDisabled:
-                            emailHasInput && passwordHasInput ? false : true,
-                        function: () => Navigator.pushNamed(
-                          context,
-                          FillProfileScreen.routeName,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const AuthSocialOptions(),
-            AuthAlternateActionText(
-              alternateText: 'Already have an account? ',
-              actionText: 'Sign In',
-              function: () => Navigator.pushNamed(
-                context,
-                LoginScreen.routeName,
+              const AuthSocialOptions(),
+              AuthAlternateActionText(
+                alternateText: 'Already have an account? ',
+                actionText: 'Sign In',
+                function: () => Navigator.pushNamed(
+                  context,
+                  LoginScreen.routeName,
+                ),
               ),
-            ),
-            SizedBox(height: 4.h),
-          ],
+              SizedBox(height: 4.h),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void createUser() async {
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid == false) {
+      return;
+    } else {
+      var authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+      await authProvider.createUser(
+        email: emailTextController.text.trim(),
+        password: passwordTextController.text.trim(),
+        context: context,
+        scaffoldKey: _scaffoldKey,
+      );
+    }
   }
 }
