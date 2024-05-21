@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/homescreen_widgets/custom_home_app_bar.dart';
+import 'shop_screens/shop_screen.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -24,9 +25,7 @@ class _FeedScreenState extends State<FeedScreen> {
     Center(
       child: Text('Feeds'),
     ),
-    Center(
-      child: Text('Shop'),
-    ),
+    ShopScreen(),
     Center(
       child: Text('Discover'),
     ),

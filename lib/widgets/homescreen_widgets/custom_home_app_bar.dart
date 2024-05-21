@@ -15,13 +15,14 @@ class CustomHomeScreenAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      width: 100.w,
+      color: const Color(0xFF202020),
       padding: EdgeInsets.symmetric(
-        vertical: 10.sp,
-        horizontal: 13.sp,
+        vertical: 2.h,
+        horizontal: 5.w,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -31,17 +32,11 @@ class CustomHomeScreenAppBar extends StatelessWidget {
                 onTap: () => getToPage(0),
                 isSelected: currentIndex == 0 ? true : false,
               ),
-              SizedBox(
-                width: 7.sp,
-              ),
               CustomHomeAppBarChip(
                 text: "Shop",
                 iconUrl: "assets/icons/shop.svg",
                 onTap: () => getToPage(1),
                 isSelected: currentIndex == 1 ? true : false,
-              ),
-              SizedBox(
-                width: 7.sp,
               ),
               CustomHomeAppBarChip(
                 text: "Discover",
@@ -51,22 +46,40 @@ class CustomHomeScreenAppBar extends StatelessWidget {
               ),
             ],
           ),
-          GestureDetector(
-            onTap: () => getToPage(3),
-            child: Column(
-              children: [
-                Icon(
-                  Icons.sensors_rounded,
-                  color: Colors.white,
-                  size: 16.sp,
+          const Spacer(),
+          currentIndex == 1
+              ? GestureDetector(
+                  onTap: () => getToPage(3),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Colors.white,
+                        size: 16.sp,
+                      ),
+                      Text(
+                        "CART",
+                        style: TextStyle(fontSize: 9.sp),
+                      ),
+                    ],
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () => getToPage(3),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.sensors_rounded,
+                        color: Colors.white,
+                        size: 16.sp,
+                      ),
+                      Text(
+                        "LIVE",
+                        style: TextStyle(fontSize: 9.sp),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  "LIVE",
-                  style: TextStyle(fontSize: 9.sp),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

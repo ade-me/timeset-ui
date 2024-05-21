@@ -27,6 +27,7 @@ dependencies:
   fluttertoast: ^8.2.5
   image_picker: ^1.1.1
   shimmer: ^3.0.0
+  carousel_slider: ^4.2.1
 
 
 flutter_icons: # flutter_launcher_icons configuration
