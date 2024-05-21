@@ -123,14 +123,14 @@ class AuthProvider extends ChangeNotifier {
               context, FillProfileScreen.routeName, (route) => false);
         }
       } else {
-        List<dynamic> message = body['message'] as List<dynamic>;
+        // List<dynamic> message = body['message'] as List<dynamic>;
 
         print('Error creating user in: ${body['message']}');
         _changeLoadingState(false);
         if (context.mounted) {
           showScaffoldMessenger(
             scaffoldKey: scaffoldKey,
-            textContent: message.first,
+            textContent: body['message'].toString(),
             context: context,
           );
 
