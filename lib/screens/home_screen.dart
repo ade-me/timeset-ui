@@ -39,11 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.green,
-      ),
-    );
     List<Widget> pages = [
       const FeedScreen(),
       const SearchScreen(),

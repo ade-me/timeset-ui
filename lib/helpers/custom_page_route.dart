@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:timeset/screens/create_post_screens/create_post_screen.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/search/search_result_screen.dart';
@@ -57,6 +58,11 @@ class CustomPageRoute {
       case ShopCategoryScreen.routeName:
         return _pageTransition(
           child: const ShopCategoryScreen(),
+          settings: settings,
+        );
+      case CreatePostScreen.routeName:
+        return _pageTransition(
+          child: const CreatePostScreen(),
           settings: settings,
         );
       default:

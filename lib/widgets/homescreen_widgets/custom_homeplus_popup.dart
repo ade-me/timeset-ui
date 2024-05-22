@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/screens/create_post_screens/create_post_screen.dart';
 
 class CustomHomePlusPopUp {
   static void showHomePlusPopup(context) {
@@ -30,21 +31,31 @@ class CustomHomePlusPopUp {
                   ),
                   child: Column(
                     children: [
-                      ListTile(
-                        dense: true,
-                        visualDensity:
-                            const VisualDensity(horizontal: 0, vertical: -2),
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 15),
-                        minVerticalPadding: 0,
-                        title: Text(
-                          "Post",
-                          style: TextStyle(
-                            color: HexColor("#000000"),
-                            fontSize: 11.sp,
+                      InkWell(
+                        splashColor: Colors.black12,
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          Navigator.pushNamed(
+                            context,
+                            CreatePostScreen.routeName,
+                          );
+                        },
+                        child: ListTile(
+                          dense: true,
+                          visualDensity:
+                              const VisualDensity(horizontal: 0, vertical: -2),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 15),
+                          minVerticalPadding: 0,
+                          title: Text(
+                            "Post",
+                            style: TextStyle(
+                              color: HexColor("#000000"),
+                              fontSize: 11.sp,
+                            ),
                           ),
+                          trailing: SvgPicture.asset("assets/icons/video.svg"),
                         ),
-                        trailing: SvgPicture.asset("assets/icons/video.svg"),
                       ),
                       ListTile(
                         dense: true,
@@ -94,10 +105,10 @@ class CustomHomePlusPopUp {
                 width: 100.w,
                 child: IconButton(
                   style: ButtonStyle(
-                    padding: const MaterialStatePropertyAll(
+                    padding: const WidgetStatePropertyAll(
                       EdgeInsets.all(15),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(
+                    backgroundColor: WidgetStatePropertyAll(
                       HexColor("#9CBB30"),
                     ),
                   ),

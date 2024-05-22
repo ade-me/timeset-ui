@@ -50,7 +50,7 @@ class _SearchResultScreenState extends State<SearchResultScreen>
     return Scaffold(
       backgroundColor: HexColor("#111111"),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(130),
+        preferredSize: const Size.fromHeight(150),
         child: SearchResultAppBar(
           searchFocusNode: searchFocusNode,
           searchTextController: searchTextController,
