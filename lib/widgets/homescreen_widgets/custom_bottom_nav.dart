@@ -19,7 +19,7 @@ class CustomBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 11.sp),
+      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.sp),
       alignment: Alignment.center,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 6.w),
@@ -47,10 +47,10 @@ class CustomBottomNav extends StatelessWidget {
             ),
             IconButton(
               style: ButtonStyle(
-                padding: const MaterialStatePropertyAll(
+                padding: const WidgetStatePropertyAll(
                   EdgeInsets.all(8),
                 ),
-                backgroundColor: MaterialStatePropertyAll(
+                backgroundColor: WidgetStatePropertyAll(
                   HexColor("#9CBB30"),
                 ),
               ),
