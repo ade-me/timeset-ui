@@ -132,13 +132,14 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
               padding: EdgeInsets.all(5.w),
               child: AuthButton(
                 text: 'Continue',
-                isDisabled: currentPage == 0 && selectedProfileInterests.isEmpty
-                    ? true
-                    : currentPage == 1 && gender == Gender.others
+                isDisabled:
+                    currentPage == 0 && selectedProfileInterests.isNotEmpty
                         ? true
-                        : currentPage == 3 && inputsStatus
+                        : currentPage == 1 && gender == Gender.others
                             ? true
-                            : false,
+                            : currentPage == 3 && inputsStatus
+                                ? true
+                                : false,
                 function: () {
                   if (currentPage == 3) {
                     return;

@@ -39,9 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.green,
+      ),
+    );
     List<Widget> pages = [
       const FeedScreen(),
       const SearchScreen(),
@@ -63,8 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: SizedBox(
-          height: 12.h,
+        bottomNavigationBar: Container(
+          color: const Color(0xFF202020),
+          height: 10.h,
           child: CustomBottomNav(
             pageController: pageController,
             currentIndex: currentIndex,

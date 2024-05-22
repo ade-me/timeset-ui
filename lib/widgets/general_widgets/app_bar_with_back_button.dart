@@ -3,7 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
-class AppBarWithBackButton extends StatelessWidget {
+class AppBarWithBackButton extends StatelessWidget
+    implements PreferredSizeWidget {
+  @override
+  Size get preferredSize => const Size.fromHeight(60.0);
   final String title;
   final Function? function;
   final bool hasCustomFunction;

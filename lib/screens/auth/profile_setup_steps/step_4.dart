@@ -191,7 +191,7 @@ class _Step4State extends State<Step4> {
               alignment: Alignment.center,
               child: Stack(
                 children: [
-                  file!.existsSync()
+                  file?.isAbsolute ?? false
                       ? CircleAvatar(
                           backgroundColor: HexColor("#2C2C2C"),
                           radius: 50.sp,

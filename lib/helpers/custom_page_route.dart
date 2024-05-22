@@ -9,6 +9,7 @@ import '../screens/auth/forgot_password_screen.dart';
 import '../screens/auth/auth_root.dart';
 import '../screens/auth/create_account_screen.dart';
 import '../screens/auth/login_screen.dart';
+import '../screens/shop_screens/shop_category_screen.dart';
 
 class CustomPageRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -51,6 +52,11 @@ class CustomPageRoute {
       case SearchResultScreen.routeName:
         return _pageTransition(
           child: const SearchResultScreen(),
+          settings: settings,
+        );
+      case ShopCategoryScreen.routeName:
+        return _pageTransition(
+          child: const ShopCategoryScreen(),
           settings: settings,
         );
       default:

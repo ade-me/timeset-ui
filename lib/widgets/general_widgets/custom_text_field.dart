@@ -187,3 +187,66 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
+
+class SearchTextField extends StatefulWidget {
+  const SearchTextField({
+    super.key,
+    required this.controller,
+    this.onChanged,
+    this.onEditingComplete,
+  });
+
+  final TextEditingController controller;
+  final Function(String)? onChanged;
+  final Function()? onEditingComplete;
+
+  @override
+  State<SearchTextField> createState() => _SearchTextFieldState();
+}
+
+class _SearchTextFieldState extends State<SearchTextField> {
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var textTheme = theme.textTheme;
+
+    var outlineInputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+        color: theme.primaryColor,
+        width: 0.5.sp,
+      ),
+    );
+
+    return TextField(
+      controller: widget.controller,
+      textInputAction: TextInputAction.search,
+      keyboardType: TextInputType.text,
+      style: textTheme.bodyMedium,
+      cursorColor: theme.primaryColor,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: theme.primaryColor.withOpacity(0.1),
+        hintText: 'Search for a product',
+        hintStyle: textTheme.bodyMedium?.copyWith(
+          color: Colors.white54,
+        ),
+        prefixIcon: Icon(
+          Icons.search_rounded,
+          color: theme.primaryColor,
+        ),
+        border: outlineInputBorder,
+        enabledBorder: outlineInputBorder,
+        focusedBorder: outlineInputBorder,
+        prefixIconConstraints: BoxConstraints(minWidth: 15.w),
+        contentPadding: EdgeInsets.only(
+          left: 5.w,
+          top: 2.5.h,
+          bottom: 2.5.h,
+        ),
+      ),
+      onChanged: widget.onChanged,
+      onEditingComplete: widget.onEditingComplete,
+    );
+  }
+}
