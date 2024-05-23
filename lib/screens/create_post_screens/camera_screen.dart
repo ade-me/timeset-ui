@@ -160,9 +160,8 @@ class _CameraScreenState extends State<CameraScreen>
                           var controller = cameraBloc.getController();
                           return Transform.scale(
                             scale: 1 /
-                                (controller!.value.aspectRatio *
-                                    MediaQuery.of(context).size.aspectRatio),
-                            child: CameraPreview(controller),
+                                (1 * MediaQuery.of(context).size.aspectRatio),
+                            child: CameraPreview(controller!),
                           );
                         })
                       : state is CameraInitial && screenshotBytes != null
