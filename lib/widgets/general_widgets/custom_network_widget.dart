@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:sizer/sizer.dart';
 
 import 'custom_shimmer.dart';
 
@@ -29,13 +28,18 @@ class CustomNetworkImage extends StatelessWidget {
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
           return CustomShimmer(
-            height: 20.h,
-            width: 100.w,
+            height: h ?? 0,
+            width: w ?? 0,
           );
         },
         errorBuilder: (ctx, _, stacktrace) {
           return Center(
-            child: Image.asset('assets/logos/logo.png'),
+            child: Image.asset(
+              'assets/logos/logo.png',
+              height: h,
+              width: w,
+              fit: BoxFit.cover,
+            ),
           );
         },
       ),
