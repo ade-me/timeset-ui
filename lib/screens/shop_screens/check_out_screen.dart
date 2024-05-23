@@ -6,12 +6,11 @@ import '../../widgets/general_widgets/custom_floating_button.dart';
 import '../../widgets/general_widgets/general_app_padding.dart';
 import '../../widgets/shop_widgets/cart_list_tile.dart';
 import '../../widgets/shop_widgets/cart_metrics_tile.dart';
-import 'check_out_screen.dart';
 
-class CartScreen extends StatelessWidget {
-  static const routeName = '/CartScreen';
+class CheckOutScreen extends StatelessWidget {
+  static const routeName = '/CheckOutScreen';
 
-  const CartScreen({super.key});
+  const CheckOutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class CartScreen extends StatelessWidget {
           children: [
             const GeneralAppPadding(
               child: AppBarWithBackButton(
-                title: 'Cart',
+                title: 'Checkout',
                 centerTitle: true,
               ),
             ),
@@ -89,10 +88,8 @@ class CartScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    CustomFloatingButton(
+                    const CustomFloatingButton(
                       label: 'Checkout',
-                      onPressed: () => Navigator.pushNamed(
-                          context, CheckOutScreen.routeName),
                     ),
                   ],
                 ),

@@ -11,6 +11,7 @@ import '../screens/auth/auth_root.dart';
 import '../screens/auth/create_account_screen.dart';
 import '../screens/auth/login_screen.dart';
 import '../screens/shop_screens/cart_screen.dart';
+import '../screens/shop_screens/check_out_screen.dart';
 import '../screens/shop_screens/product_screen.dart';
 import '../screens/shop_screens/shop_category_screen.dart';
 
@@ -75,6 +76,11 @@ class CustomPageRoute {
       case CartScreen.routeName:
         return _pageTransition(
           child: const CartScreen(),
+          settings: settings,
+        );
+      case CheckOutScreen.routeName:
+        return _pageTransition(
+          child: const CheckOutScreen(),
           settings: settings,
         );
       default:
