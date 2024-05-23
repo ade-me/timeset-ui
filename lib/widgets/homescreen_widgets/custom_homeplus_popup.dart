@@ -23,7 +23,7 @@ class CustomHomePlusPopUp {
                 margin: EdgeInsets.only(bottom: 12.h),
                 width: 100.w,
                 child: Container(
-                  width: 120.sp,
+                  width: 45.w,
                   padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5.sp),
                   decoration: BoxDecoration(
                     color: Colors.white,

@@ -38,105 +38,107 @@ class _PostScreenState extends State<PostScreen> {
         child: Column(
           children: [
             Expanded(
-              child: Column(
-                children: [
-                  GeneralAppPadding(
-                    verticalPadding: 10,
-                    child: Column(
-                      children: [
-                        AppBarWithBackButton(
-                          title: "Post",
-                          hasCustomFunction: true,
-                          function: () {
-                            widget.pageController.previousPage(
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOutCirc,
-                            );
-                          },
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 60.w,
-                              child: CaptionTextfield(
-                                controller: captionFieldController,
-                                focusNode: captionFieldFocusNode,
-                                hintText: "Enter a caption",
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    GeneralAppPadding(
+                      verticalPadding: 10,
+                      child: Column(
+                        children: [
+                          AppBarWithBackButton(
+                            title: "Post",
+                            hasCustomFunction: true,
+                            function: () {
+                              widget.pageController.previousPage(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOutCirc,
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 60.w,
+                                child: CaptionTextfield(
+                                  controller: captionFieldController,
+                                  focusNode: captionFieldFocusNode,
+                                  hintText: "Enter a caption",
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            const CoverSelect(),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Row(
-                          children: [
-                            TagChip(
-                              onTap: () {},
-                              text: "Hashtag",
-                              icon: Icons.tag,
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            TagChip(
-                              onTap: () {},
-                              text: "Mention",
-                              icon: Icons.alternate_email_rounded,
-                            ),
-                          ],
-                        )
-                      ],
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              const CoverSelect(),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Row(
+                            children: [
+                              TagChip(
+                                onTap: () {},
+                                text: "Hashtag",
+                                icon: Icons.tag,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              TagChip(
+                                onTap: () {},
+                                text: "Mention",
+                                icon: Icons.alternate_email_rounded,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  Container(
-                    color: HexColor("#2C2C2C"),
-                    height: 1,
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  OptionsTile(
-                    title: "Tag People",
-                    icon: "user",
-                    onTap: () {
-                      widget.pageController.jumpToPage(
-                        2,
-                      );
-                    },
-                  ),
-                  OptionsTile(
-                    title: "Add Location",
-                    icon: "location",
-                    onTap: () {
-                      widget.pageController.jumpToPage(
-                        3,
-                      );
-                    },
-                  ),
-                  OptionsTile(
-                    title: "Allow Comments",
-                    icon: "comment",
-                    onTap: () {},
-                  ),
-                  OptionsTile(
-                    title: "Add shopping items",
-                    icon: "shop2",
-                    onTap: () {
-                      widget.pageController.jumpToPage(4);
-                    },
-                  ),
-                ],
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    Container(
+                      color: HexColor("#2C2C2C"),
+                      height: 1,
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    OptionsTile(
+                      title: "Tag People",
+                      icon: "user",
+                      onTap: () {
+                        widget.pageController.jumpToPage(
+                          2,
+                        );
+                      },
+                    ),
+                    OptionsTile(
+                      title: "Add Location",
+                      icon: "location",
+                      onTap: () {
+                        widget.pageController.jumpToPage(
+                          3,
+                        );
+                      },
+                    ),
+                    OptionsTile(
+                      title: "Allow Comments",
+                      icon: "comment",
+                      onTap: () {},
+                    ),
+                    OptionsTile(
+                      title: "Add shopping items",
+                      icon: "shop2",
+                      onTap: () {
+                        widget.pageController.jumpToPage(4);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(

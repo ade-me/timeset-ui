@@ -4,7 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:camera/camera.dart';
 
@@ -184,7 +187,7 @@ class _CameraScreenState extends State<CameraScreen>
               Positioned(
                 bottom: 30,
                 child: SizedBox(
-                  width: 250,
+                  width: 80.w,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -204,7 +207,7 @@ class _CameraScreenState extends State<CameraScreen>
                         child: Visibility(
                           visible: !disableButtons,
                           child: CircleAvatar(
-                            backgroundColor: Colors.white.withOpacity(0.5),
+                            backgroundColor: Colors.transparent,
                             radius: 25,
                             child: IconButton(
                               onPressed: () async {
@@ -219,9 +222,9 @@ class _CameraScreenState extends State<CameraScreen>
                                 }
                               },
                               icon: const Icon(
-                                Icons.cameraswitch,
-                                color: Colors.black,
-                                size: 28,
+                                Icons.cached_rounded,
+                                color: Colors.white,
+                                size: 30,
                               ),
                             ),
                           ),
@@ -235,7 +238,7 @@ class _CameraScreenState extends State<CameraScreen>
                               builder: (context, localSetState) {
                             return GestureDetector(
                               onTap: () {
-                                final List<int> time = [15, 30, 60, 90];
+                                final List<int> time = [15, 30, 60];
                                 int currentIndex = time
                                     .indexOf(cameraBloc.recordDurationLimit);
                                 localSetState(() {
@@ -262,9 +265,57 @@ class _CameraScreenState extends State<CameraScreen>
                   ),
                 ),
               ),
+              Positioned(
+                top: 0,
+                left: 0,
+                child: SafeArea(
+                  child: Container(
+                    width: 100.w,
+                    padding: EdgeInsets.all(10.sp),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            size: 20.sp,
+                          ),
+                          color: Colors.white,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.flash_off,
+                            size: 20.sp,
+                          ),
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
+        Container(
+          color: HexColor("#212121"),
+          padding: EdgeInsets.all(15.sp),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Camera"),
+              SizedBox(
+                width: 10.w,
+              ),
+              const Text("Quick"),
+            ],
+          ),
+        )
       ],
     );
   }
@@ -295,7 +346,7 @@ class _CameraScreenState extends State<CameraScreen>
                 duration: const Duration(milliseconds: 200),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFF978B8B).withOpacity(0.8),
+                  color: HexColor("#212121"),
                 )),
             ValueListenableBuilder(
                 valueListenable: cameraBloc.recordingDuration,
@@ -327,17 +378,24 @@ class _CameraScreenState extends State<CameraScreen>
                 alignment: Alignment.center,
                 children: [
                   AnimatedContainer(
+                    padding: const EdgeInsets.all(19),
                     duration: const Duration(milliseconds: 200),
                     curve: Curves.linear,
-                    height: isRecording ? 25 : 64,
-                    width: isRecording ? 25 : 64,
+                    height: isRecording ? 25 : 70,
+                    width: isRecording ? 25 : 70,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(
-                          255, 255, 255, 255), //Color(0xffe80415),
+                      color: HexColor("#9CBB30"), //Color(0xffe80415),
                       borderRadius: isRecording
                           ? BorderRadius.circular(6)
                           : BorderRadius.circular(100),
                     ),
+                    child: isRecording
+                        ? const SizedBox()
+                        : SvgPicture.asset(
+                            "assets/icons/video.svg",
+                            width: 5,
+                            height: 5,
+                          ),
                   ),
                 ],
               ),
