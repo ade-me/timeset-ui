@@ -3,7 +3,9 @@ import 'package:readmore/readmore.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timeset/widgets/feeds_screen_widgets/comments.dart';
 import 'package:timeset/widgets/feeds_screen_widgets/comments_bottom_sheet.dart';
+import 'package:timeset/widgets/feeds_screen_widgets/save_post_widget.dart';
 import 'package:timeset/widgets/feeds_screen_widgets/song_widget.dart';
+import 'package:timeset/widgets/general_widgets/custom_bottom_sheet.dart';
 
 import '../../constants/app_colors.dart';
 import '../../widgets/feeds_screen_widgets/option.dart';
@@ -104,7 +106,12 @@ class _FeedOptionsState extends State<FeedOptions> {
               Option(
                 hasCustomIcon: true,
                 customIcon: "bucket",
-                onTap: () {},
+                onTap: () {
+                  CustomBottomSheet.showBottomSheet(
+                    context,
+                    const SavePostWidget(),
+                  );
+                },
               ),
               SizedBox(
                 height: 4.h,
