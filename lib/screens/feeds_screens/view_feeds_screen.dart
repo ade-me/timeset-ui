@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../widgets/feeds_screen_widgets/single_feed.dart';
