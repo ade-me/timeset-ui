@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+
+import 'custom_app_bar_icon.dart';
 
 class AppBarWithBackButton extends StatelessWidget
     implements PreferredSizeWidget {
@@ -10,12 +10,16 @@ class AppBarWithBackButton extends StatelessWidget
   final String title;
   final Function? function;
   final bool hasCustomFunction;
+  final List<Widget>? actions;
+  final bool centerTitle;
 
   const AppBarWithBackButton({
     super.key,
     this.title = "",
     this.function,
     this.hasCustomFunction = false,
+    this.actions,
+    this.centerTitle = false,
   });
 
   @override
@@ -23,37 +27,45 @@ class AppBarWithBackButton extends StatelessWidget
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.sp),
       child: Stack(
+        alignment: Alignment.center,
         children: [
           // back button
           Row(
             children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(30),
-                onTap: () => hasCustomFunction
+              CustomAppBarIcon(
+                icon: 'back',
+                function: () => hasCustomFunction
                     ? function!()
                     : Navigator.of(context).pop(),
-                splashColor: Colors.white10,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: HexColor("#2C2C2C"), width: 1),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.all(9.sp),
-                  child: SvgPicture.asset('assets/icons/back.svg'),
-                ),
               ),
               SizedBox(
                 width: 15.sp,
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+              titleWidget(
+                visible: !centerTitle,
+              ),
+              const Spacer(),
+              Row(
+                children: actions ?? [],
               ),
             ],
           ),
+          titleWidget(visible: centerTitle),
         ],
+      ),
+    );
+  }
+
+  Visibility titleWidget({
+    required bool visible,
+  }) {
+    return Visibility(
+      visible: visible,
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 14.sp,
+        ),
       ),
     );
   }

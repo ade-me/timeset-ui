@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../screens/shop_screens/cart_screen.dart';
 import '../../widgets/homescreen_widgets/custom_home_appbar_chip.dart';
 
 class CustomHomeScreenAppBar extends StatelessWidget {
@@ -49,7 +50,10 @@ class CustomHomeScreenAppBar extends StatelessWidget {
           const Spacer(),
           currentIndex == 1
               ? GestureDetector(
-                  onTap: () => getToPage(3),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    CartScreen.routeName,
+                  ),
                   child: Column(
                     children: [
                       Icon(
