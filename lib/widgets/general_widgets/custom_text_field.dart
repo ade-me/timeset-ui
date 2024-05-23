@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/constants/app_colors.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -243,6 +244,113 @@ class _SearchTextFieldState extends State<SearchTextField> {
           left: 5.w,
           top: 2.5.h,
           bottom: 2.5.h,
+        ),
+      ),
+      onChanged: widget.onChanged,
+      onEditingComplete: widget.onEditingComplete,
+    );
+  }
+}
+
+class CommentTextField extends StatefulWidget {
+  const CommentTextField({
+    super.key,
+    required this.controller,
+    this.onChanged,
+    this.onEditingComplete,
+    required this.focusNode,
+    this.onSend,
+  });
+
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final Function(String)? onChanged;
+  final Function()? onEditingComplete;
+  final Function()? onSend;
+
+  @override
+  State<CommentTextField> createState() => _CommentTextFieldState();
+}
+
+class _CommentTextFieldState extends State<CommentTextField> {
+  bool _hasFocus = false;
+  bool _isEmpty = true;
+
+  void checkFocus() => setState(
+      () => widget.focusNode.hasFocus ? _hasFocus = true : _hasFocus = false);
+
+  void checkIsEmpty() => setState(() =>
+      widget.controller.text.isEmpty ? _isEmpty = true : _isEmpty = false);
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.focusNode.addListener(checkFocus);
+    widget.controller.addListener(checkIsEmpty);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var textTheme = theme.textTheme;
+
+    var outlineInputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+        color: const Color(0xFF2C2C2C),
+        width: 0.5.sp,
+      ),
+    );
+
+    return TextField(
+      controller: widget.controller,
+      textInputAction: TextInputAction.done,
+      keyboardType: TextInputType.text,
+      style: textTheme.bodyMedium,
+      cursorColor: theme.primaryColor,
+      focusNode: widget.focusNode,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: _hasFocus
+            ? theme.primaryColor.withOpacity(0.1)
+            : HexColor("#2C2C2C"),
+        hintText: 'Add comment',
+        hintStyle: textTheme.bodyMedium?.copyWith(
+          color: Colors.white54,
+        ),
+        border: outlineInputBorder,
+        enabledBorder: outlineInputBorder,
+        focusedBorder: outlineInputBorder.copyWith(
+          borderSide: BorderSide(
+            color: theme.primaryColor,
+            width: 1.sp,
+          ),
+        ),
+        suffixIcon: _isEmpty
+            ? const SizedBox()
+            : Container(
+                padding: const EdgeInsets.all(10),
+                child: InkWell(
+                  onTap: widget.onSend,
+                  child: Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/icons/send.svg",
+                    ),
+                  ),
+                ),
+              ),
+        prefixIconConstraints: BoxConstraints(minWidth: 15.w),
+        contentPadding: EdgeInsets.only(
+          left: 5.w,
+          top: 2.5.h,
+          bottom: 2.5.h,
+          right: 5.w,
         ),
       ),
       onChanged: widget.onChanged,

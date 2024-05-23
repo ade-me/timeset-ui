@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timeset/screens/feeds_screens/view_feeds_screen.dart';
 
 import '../widgets/homescreen_widgets/custom_home_app_bar.dart';
 import 'shop_screens/shop_screen.dart';
@@ -22,9 +23,7 @@ class _FeedScreenState extends State<FeedScreen> {
   }
 
   final List<Widget> _pages = const [
-    Center(
-      child: Text('Feeds'),
-    ),
+    ViewFeedsScreen(),
     ShopScreen(),
     Center(
       child: Text('Discover'),
