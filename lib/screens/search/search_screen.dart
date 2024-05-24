@@ -45,19 +45,8 @@ class _SearchScreenState extends State<SearchScreen> {
         verticalPadding: 3.h,
         child: Column(
           children: [
-            CustomTextField(
-              textInputType: TextInputType.text,
-              textInputAction: TextInputAction.search,
+            SearchTextField(
               controller: searchTextController,
-              focusNode: searchFocusNode,
-              iconName: 'search_inactive',
-              hintText: 'Search for anything',
-              iconColor: HexColor("#9CBB30"),
-              onSubmitted: (value) {
-                setState(() {
-                  searchValue = value;
-                });
-              },
             ),
             SizedBox(
               height: 2.5.h,
