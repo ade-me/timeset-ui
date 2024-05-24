@@ -2,17 +2,10 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseStorageUploader {
-  FirebaseAuth authInstance = FirebaseAuth.instance;
   FirebaseStorage storageInstance = FirebaseStorage.instance;
-  FirebaseFirestore cloudInstance = FirebaseFirestore.instance;
 
   Future<String?> uploadProfileImage(File imageFile) async {
     try {
-      String? uid = authInstance.currentUser?.uid;
-      if (uid == null) {
-        throw Exception("User not authenticated");
-      }
-
       String path = "users/$uid";
       Reference storageRef = storageInstance.ref().child(path);
 
@@ -22,11 +15,9 @@ class FirebaseStorageUploader {
 
       String imageUrl = await snapshot.ref.getDownloadURL();
 
-      await authInstance.currentUser?.updatePhotoURL(imageUrl);
-
       return imageUrl;
     } catch (e) {
-      print("Profile image upload error: $e");
+      print("Faild to upload image error: $e");
       return null;
     }
   }
