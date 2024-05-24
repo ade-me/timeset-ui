@@ -156,7 +156,7 @@ class _SingleFeedState extends State<SingleFeed> {
                       fit: BoxFit.contain,
                     )
                   : chewieController == null
-                      ? const Text("yeah")
+                      ? const SizedBox()
                       : Container(
                           alignment: Alignment.center,
                           child: AspectRatio(
