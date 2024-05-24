@@ -55,7 +55,7 @@ class _ShopScreenState extends State<ShopScreen> {
 
     return Column(
       children: [
-        sizedBox,
+        SizedBox(height: 11.h),
         GeneralAppPadding(
           child: SearchTextField(
             controller: searchFieldController,

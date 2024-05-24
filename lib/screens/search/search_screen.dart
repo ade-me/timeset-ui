@@ -39,67 +39,69 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: HexColor("#0e0e0e"),
-      child: GeneralAppPadding(
-        verticalPadding: 3.h,
-        child: Column(
-          children: [
-            SearchTextField(
-              controller: searchTextController,
-            ),
-            SizedBox(
-              height: 2.5.h,
-            ),
-            SingleChildScrollView(
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Recent"),
-                    GestureDetector(
-                      child: Text(
-                        "Clear all",
-                        style: TextStyle(
-                          color: HexColor("#9CBB30"),
-                          fontSize: 11.sp,
+    return SafeArea(
+      child: Container(
+        color: HexColor("#0e0e0e"),
+        child: GeneralAppPadding(
+          verticalPadding: 2.h,
+          child: Column(
+            children: [
+              SearchTextField(
+                controller: searchTextController,
+              ),
+              SizedBox(
+                height: 2.5.h,
+              ),
+              SingleChildScrollView(
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Recent"),
+                      GestureDetector(
+                        child: Text(
+                          "Clear all",
+                          style: TextStyle(
+                            color: HexColor("#9CBB30"),
+                            fontSize: 11.sp,
+                          ),
                         ),
-                      ),
-                      onTap: () {},
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10.sp,
-                ),
-                Column(
-                  children: searchHistory
-                      .map(
-                        (e) => SearchHistoryTile(
-                          text: e,
-                          onRemove: () {
-                            searchHistory.remove(e);
-                            setState(() {});
-                          },
-                          onTap: () {
-                            setState(() {
-                              searchValue = e;
-                            });
-                            Navigator.pushNamed(
-                              context,
-                              SearchResultScreen.routeName,
-                              arguments: {
-                                'searchValue': searchValue,
-                              },
-                            );
-                          },
-                        ),
+                        onTap: () {},
                       )
-                      .toList(),
-                )
-              ]),
-            )
-          ],
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.sp,
+                  ),
+                  Column(
+                    children: searchHistory
+                        .map(
+                          (e) => SearchHistoryTile(
+                            text: e,
+                            onRemove: () {
+                              searchHistory.remove(e);
+                              setState(() {});
+                            },
+                            onTap: () {
+                              setState(() {
+                                searchValue = e;
+                              });
+                              Navigator.pushNamed(
+                                context,
+                                SearchResultScreen.routeName,
+                                arguments: {
+                                  'searchValue': searchValue,
+                                },
+                              );
+                            },
+                          ),
+                        )
+                        .toList(),
+                  )
+                ]),
+              )
+            ],
+          ),
         ),
       ),
     );

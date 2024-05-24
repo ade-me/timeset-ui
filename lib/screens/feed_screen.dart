@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:timeset/screens/feeds_screens/view_feeds_screen.dart';
 
 import '../widgets/homescreen_widgets/custom_home_app_bar.dart';
@@ -37,19 +38,16 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Expanded(
-          child: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            children: _pages,
-            onPageChanged: (index) => setState(() {
-              currentIndex = index;
-            }),
-          ),
+        PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: _pages,
+          onPageChanged: (index) => setState(() {
+            currentIndex = index;
+          }),
         ),
         Positioned(
-          top: 0,
-          left: 0,
+          top: 2.5.h,
           child: CustomHomeScreenAppBar(
             pageController: pageController,
             currentIndex: currentIndex,
