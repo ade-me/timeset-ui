@@ -6,8 +6,8 @@ class LocationSelect extends StatefulWidget {
   const LocationSelect(
       {super.key, required this.title, required this.address, this.onTap});
 
-  final String title;
-  final String address;
+  final String? title;
+  final String? address;
   final Function()? onTap;
 
   @override
@@ -38,17 +38,10 @@ class _LocationSelectState extends State<LocationSelect> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.title,
-                ),
-                const SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  widget.address,
-                  style: TextStyle(
-                    fontSize: 9.sp,
-                    color: HexColor("#AEAEAE"),
+                SizedBox(
+                  width: 70.w,
+                  child: Text(
+                    "${widget.title}",
                   ),
                 ),
               ],

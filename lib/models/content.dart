@@ -16,4 +16,12 @@ class Content {
       effect: json['effect'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'uri': uri,
+      'type': type,
+      'effect': effect,
+    };
+  }
 }

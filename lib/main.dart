@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:timeset/state_management/post_provider.dart';
 
 import 'constants/app_colors.dart';
 import 'helpers/custom_page_route.dart';
@@ -48,6 +49,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => SharedPref(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => PostProvider(),
+          ),
         ],
         builder: (context, child) {
           return MaterialApp(
@@ -90,7 +94,7 @@ class MyApp extends StatelessWidget {
                 selectionHandleColor: AppColors.primary,
               ),
             ),
-            home: !Provider.of<AuthProvider>(context).isLoggedIn
+            home: Provider.of<AuthProvider>(context).isLoggedIn
                 ? const HomeScreen()
                 : const Onboarding(),
             onGenerateRoute: (settings) =>

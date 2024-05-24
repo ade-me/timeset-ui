@@ -20,7 +20,7 @@ class FilePicker {
   }
 
   static Future<List<File>?> getMultipleFiles() async {
-    List<XFile>? xfiles = await _imagePicker.pickMultiImage();
+    List<XFile>? xfiles = await _imagePicker.pickMultipleMedia(limit: 5);
 
     if (xfiles.isNotEmpty) {
       List<File> files = xfiles.map((xfile) => File(xfile.path)).toList();

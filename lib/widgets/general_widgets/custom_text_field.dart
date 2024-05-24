@@ -26,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.onSubmitted,
     this.iconColor = Colors.white,
     this.validator,
+    this.onChanged,
   });
 
   final String? Function(String?)? validator;
@@ -45,6 +46,7 @@ class CustomTextField extends StatefulWidget {
   final double minWidth;
   final String flagUrl;
   final Color iconColor;
+  final Function(String)? onChanged;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -88,6 +90,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: textTheme.bodyMedium,
       cursorColor: theme.primaryColor,
       obscureText: widget.isPassword ? isObscure : false,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
         filled: true,
         fillColor: _hasFocus

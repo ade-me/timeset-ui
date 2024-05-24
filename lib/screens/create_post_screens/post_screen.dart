@@ -15,23 +15,24 @@ class PostScreen extends StatefulWidget {
     super.key,
     required this.pageController,
     this.onPostClicked,
+    this.location = "Add Location",
+    required this.captionFieldController,
   });
   final PageController pageController;
   final Function()? onPostClicked;
+  final String location;
+  final TextEditingController captionFieldController;
 
   @override
   State<PostScreen> createState() => _PostScreenState();
 }
 
 class _PostScreenState extends State<PostScreen> {
-  final captionFieldController = TextEditingController();
   final captionFieldFocusNode = FocusNode();
 
   @override
   void dispose() {
     super.dispose();
-
-    captionFieldController.dispose();
 
     captionFieldFocusNode.dispose();
   }
@@ -65,18 +66,17 @@ class _PostScreenState extends State<PostScreen> {
                           ),
                           Row(
                             children: [
-                              SizedBox(
-                                width: 60.w,
+                              Expanded(
                                 child: CaptionTextfield(
-                                  controller: captionFieldController,
+                                  controller: widget.captionFieldController,
                                   focusNode: captionFieldFocusNode,
                                   hintText: "Enter a caption",
                                 ),
                               ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              const CoverSelect(),
+                              // SizedBox(
+                              //   width: 3.w,
+                              // ),
+                              // const CoverSelect(),
                             ],
                           ),
                           SizedBox(
@@ -122,7 +122,7 @@ class _PostScreenState extends State<PostScreen> {
                       },
                     ),
                     OptionsTile(
-                      title: "Add Location",
+                      title: widget.location,
                       icon: "location",
                       onTap: () {
                         widget.pageController.jumpToPage(

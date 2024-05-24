@@ -70,17 +70,11 @@ class _TagpeopleScreenState extends State<TagpeopleScreen> {
                   SizedBox(
                     height: 4.h,
                   ),
-                  const UserSelect(
-                    userName: "Ariana Grande",
-                    userImage: "",
-                    userInfo: "arianagrande | 27.3M followers",
-                  ),
-                  const UserSelect(
-                    userName: "Pysavant Codes",
-                    userImage: "",
-                    userInfo: "arianagrande | 27.3M followers",
-                    isSelected: true,
-                  ),
+                  // const UserSelect(
+                  //   userName: "Ariana Grande",
+                  //   userImage: "",
+                  //   userInfo: "arianagrande | 27.3M followers",
+                  // ),
                 ],
               ),
             ),

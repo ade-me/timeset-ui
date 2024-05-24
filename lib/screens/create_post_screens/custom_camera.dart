@@ -64,17 +64,6 @@ class CustomCameraScreenState extends State<CustomCameraScreen> {
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOutCirc,
       );
-
-      // If the picture was taken, display it on a new screen.
-      // await Navigator.of(context).push(
-      //   MaterialPageRoute(
-      //     builder: (context) => DisplayPictureScreen(
-      //       // Pass the automatically generated path to
-      //       // the DisplayPictureScreen widget.
-      //       imagePath: image.path,
-      //     ),
-      //   ),
-      // );
     } catch (e) {
       print(e);
     }
@@ -132,8 +121,6 @@ class CustomCameraScreenState extends State<CustomCameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final deviceRatio = size.width / size.height;
     return Scaffold(
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
