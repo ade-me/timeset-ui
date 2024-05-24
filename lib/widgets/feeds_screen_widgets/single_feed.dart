@@ -48,6 +48,10 @@ class _SingleFeedState extends State<SingleFeed> {
       showControls: false,
     );
 
+    widget.isInView
+        ? await chewieController?.videoPlayerController.play()
+        : await chewieController?.videoPlayerController.pause();
+
     setState(() {});
   }
 
