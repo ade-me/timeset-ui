@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../widgets/feeds_screen_widgets/feed_options.dart';
 
@@ -20,9 +21,15 @@ class _SingleFeedState extends State<SingleFeed> {
           width: 0.5,
         ),
       )),
-      child: const Stack(
+      child: Stack(
         children: [
-          Positioned(
+          Image.network(
+            'https://images.pexels.com/photos/13914818/pexels-photo-13914818.jpeg?auto=compress&cs=tinysrgb&w=600',
+            height: 100.h,
+            width: 100.w,
+            fit: BoxFit.cover,
+          ),
+          const Positioned(
             bottom: 5,
             child: FeedOptions(),
           ),

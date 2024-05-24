@@ -16,7 +16,6 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     pageController.dispose();
   }
