@@ -10,7 +10,7 @@ class AuthRepo {
   }) async {
     return ApiClient.postData(
       ApiUrls.login,
-      data: {
+      body: {
         "email": email,
         "password": password,
       },
@@ -23,7 +23,7 @@ class AuthRepo {
   }) async {
     return ApiClient.postData(
       ApiUrls.signUp,
-      data: {
+      body: {
         "email": email,
         "password": password,
       },
@@ -37,7 +37,7 @@ class AuthRepo {
   }) async {
     return ApiClient.postData(
       ApiUrls.forgotPassword,
-      data: {
+      body: {
         "email": email,
         "password": password,
         "confirmPassword": confPassword,
@@ -46,28 +46,28 @@ class AuthRepo {
   }
 
   static Future<Response> verifyOtp({
-    required String email,
-    required int code,
+    required Map<String, dynamic> body,
   }) async {
     return ApiClient.postData(
       ApiUrls.verifyOtpCode,
-      data: {
-        "email": email,
-        "pin": code,
-      },
+      body: body,
     );
   }
 
   static Future<Response> sendVeriCode({
-    required String email,
-    required String phoneNumber,
+    required Map<String, dynamic> body,
   }) async {
     return ApiClient.postData(
-      ApiUrls.login,
-      data: {
-        "email": email,
-        "phone": phoneNumber,
-      },
+      ApiUrls.sendVeriCode,
+      body: body,
+    );
+  }
+
+  static Future<Response> findUserWithEmail({
+    required String email,
+  }) async {
+    return ApiClient.fetchData(
+      'auth/$email',
     );
   }
 }

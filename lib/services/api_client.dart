@@ -56,14 +56,14 @@ class ApiClient {
   // post data
   static Future<Response> postData(
     String endpoint, {
-    Map<String, dynamic>? data,
+    Map<String, dynamic>? body,
     Map<String, dynamic>? headers,
   }) async {
     Response response = await http
         .post(
           Uri.parse('${ApiUrls.baseUrl}$endpoint'),
           headers: _buildHeaders(),
-          body: jsonEncode(data),
+          body: jsonEncode(body),
         )
         .timeout(const Duration(seconds: 30))
         .then(

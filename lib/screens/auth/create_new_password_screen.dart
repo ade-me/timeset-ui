@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../widgets/general_widgets/custom_message_bottom_sheet.dart';
+import '../../state_management/auth_provider.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
@@ -54,6 +55,9 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
     passwordFocusNode.dispose();
     confirmPasswordFocusNode.dispose();
   }
+
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -116,18 +120,23 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                 text: 'Continue',
                 isDisabled:
                     passwordHasInput && confirmPasswordHasInput ? false : true,
-                function: () {
-                  CustomMessageBottomSheet.showBottomSheet(
-                    context,
-                    'Successful!',
-                    'You have successfully reset your password, you will be redirected to the login page in a few seconds',
-                  );
-                },
+                function: changePassword,
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void changePassword() async {
+    var authPvr = Provider.of<AuthProvider>(context, listen: false);
+
+    await authPvr.changePassword(
+      password: passwordTextController.text.trim(),
+      confPassword: confirmPasswordTextController.text.trim(),
+      context: context,
+      scaffoldKey: _scaffoldKey,
     );
   }
 }
