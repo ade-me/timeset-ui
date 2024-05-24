@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/screens/auth/fill_profile_screen.dart';
 
 import '../../state_management/auth_provider.dart';
 import '../../widgets/auth_widgets/auth_alternate_action_text.dart';
@@ -125,13 +124,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               if (value!.isEmpty) {
                                 return 'Password is required';
                               }
-                              if (value.length < 8 ||
-                                  !RegExp(r'[0-9]').hasMatch(value) ||
-                                  !RegExp(r'[!@#$%^&*(),.?":{}|<>]')
-                                      .hasMatch(value) ||
-                                  !RegExp(r'[A-Z]').hasMatch(value) ||
+                              if (value.length < 8) {
+                                return 'Your password must be at least 8 characters long';
+                              }
+                              if (!RegExp(r'[0-9]').hasMatch(value)) {
+                                return 'Your password must contain at least one number';
+                              }
+                              if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]')
+                                  .hasMatch(value)) {
+                                return 'Your password must contain one symbol';
+                              }
+                              if (!RegExp(r'[A-Z]').hasMatch(value) ||
                                   !RegExp(r'[a-z]').hasMatch(value)) {
-                                return 'Your password must be at least 8 characters long, contain at least one number, one symbol and have a mixture of uppercase and lowercase letters';
+                                return 'Your password must have a mixture of uppercase and lowercase letters';
                               }
                               return null;
                             },
@@ -142,8 +147,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             isDisabled: emailHasInput && passwordHasInput
                                 ? false
                                 : true,
-                            function: () => Navigator.pushNamed(
-                                context, FillProfileScreen.routeName),
+                            function: createUser,
                           ),
                         ],
                       ),

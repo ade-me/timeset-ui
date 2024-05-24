@@ -1,5 +1,5 @@
 String replacePhone(String phoneNumber) {
-  if (phoneNumber.isEmpty) {
+  if (phoneNumber.isEmpty || phoneNumber == 'null') {
     return "";
   } else {
     return phoneNumber.replaceRange(4, 9, "*****");

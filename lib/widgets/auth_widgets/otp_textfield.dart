@@ -39,10 +39,11 @@ class OTPTextField extends StatelessWidget {
         listenForMultipleSmsOnAndroid: true,
         defaultPinTheme: defaultPinTheme,
         separatorBuilder: (index) => const SizedBox(width: 10),
-        // onClipboardFound: (value) {
-        //   debugPrint('onClipboardFound: $value');
-        //   pinController.setText(value);
-        // },
+        length: 6,
+        onClipboardFound: (value) {
+          debugPrint('onClipboardFound: $value');
+          pinController.setText(value);
+        },
         hapticFeedbackType: HapticFeedbackType.lightImpact,
         onCompleted: (pin) {
           debugPrint('onCompleted: $pin');
