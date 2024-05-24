@@ -83,7 +83,6 @@ class _SingleFeedState extends State<SingleFeed> {
 
     videoPlayerController?.dispose();
     chewieController?.dispose();
-    chewieController?.videoPlayerController.pause();
   }
 
   @override
