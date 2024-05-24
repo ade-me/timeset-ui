@@ -65,8 +65,8 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
       content: [
         Content(
           uri:
-              "https://images.pexels.com/photos/13914818/pexels-photo-13914818.jpeg?auto=compress&cs=tinysrgb&w=600",
-          type: "image",
+              "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          type: "video",
           effect: "none",
         )
       ],

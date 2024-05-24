@@ -16,7 +16,7 @@ import '../screens/shop_screens/product_screen.dart';
 import '../screens/shop_screens/shop_category_screen.dart';
 
 class CustomPageRoute {
-  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings, cameras) {
     switch (settings.name) {
       case AuthRoot.routeName:
         return _pageTransition(
@@ -65,7 +65,9 @@ class CustomPageRoute {
         );
       case CreatePostScreen.routeName:
         return _pageTransition(
-          child: const CreatePostScreen(),
+          child: CreatePostScreen(
+            cameras: cameras,
+          ),
           settings: settings,
         );
       case ProductScreen.routeName:

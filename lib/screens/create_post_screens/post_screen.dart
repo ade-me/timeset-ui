@@ -11,8 +11,13 @@ import '../../widgets/create_post_widgets/options_tile.dart';
 import '../../widgets/create_post_widgets/tag_chip.dart';
 
 class PostScreen extends StatefulWidget {
-  const PostScreen({super.key, required this.pageController});
+  const PostScreen({
+    super.key,
+    required this.pageController,
+    this.onPostClicked,
+  });
   final PageController pageController;
+  final Function()? onPostClicked;
 
   @override
   State<PostScreen> createState() => _PostScreenState();
@@ -147,7 +152,9 @@ class _PostScreenState extends State<PostScreen> {
                 text: 'Post',
                 hasIcon: true,
                 icon: "send",
-                function: () {},
+                function: () {
+                  widget.onPostClicked!();
+                },
               ),
             )
           ],

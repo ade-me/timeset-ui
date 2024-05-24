@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48668207952",
+    "project_id": "timeset-aa5e9",
+    "storage_bucket": "timeset-aa5e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48668207952:android:2bdcad12de52890c605a55",
+        "android_client_info": {
+          "package_name": "com.example.timeset"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHxgulGz-oHkkbq1oTI_3ZXf5zuvNyW-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

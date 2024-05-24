@@ -18,4 +18,16 @@ class FilePicker {
       return null;
     }
   }
+
+  static Future<List<File>?> getMultipleFiles() async {
+    List<XFile>? xfiles = await _imagePicker.pickMultiImage();
+
+    if (xfiles.isNotEmpty) {
+      List<File> files = xfiles.map((xfile) => File(xfile.path)).toList();
+
+      return files;
+    } else {
+      return null;
+    }
+  }
 }

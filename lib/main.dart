@@ -1,7 +1,9 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'constants/app_colors.dart';
 import 'helpers/custom_page_route.dart';
@@ -10,21 +12,27 @@ import 'screens/home_screen.dart';
 import 'state_management/shared_pref.dart';
 import 'state_management/auth_provider.dart';
 import 'state_management/country_provider.dart';
+import 'firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPref sharedPref = SharedPref();
   await sharedPref.initSharedPref();
+  final cameras = await availableCameras();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  runApp(const MyApp());
+  runApp(MyApp(cameras: cameras));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.cameras});
+  final List<CameraDescription> cameras;
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +90,11 @@ class MyApp extends StatelessWidget {
                 selectionHandleColor: AppColors.primary,
               ),
             ),
-            home: Provider.of<AuthProvider>(context).isLoggedIn
+            home: !Provider.of<AuthProvider>(context).isLoggedIn
                 ? const HomeScreen()
                 : const Onboarding(),
-            onGenerateRoute: CustomPageRoute.onGenerateRoute,
+            onGenerateRoute: (settings) =>
+                CustomPageRoute.onGenerateRoute(settings, cameras),
           );
         },
       );
