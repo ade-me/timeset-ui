@@ -37,15 +37,13 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Expanded(
-          child: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            children: _pages,
-            onPageChanged: (index) => setState(() {
-              currentIndex = index;
-            }),
-          ),
+        PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: _pages,
+          onPageChanged: (index) => setState(() {
+            currentIndex = index;
+          }),
         ),
         Positioned(
           top: 0,

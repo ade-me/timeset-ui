@@ -24,18 +24,15 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: PreloadPageView.builder(
-          physics: const CustomPageViewScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          preloadPagesCount: 5,
-          itemBuilder: (BuildContext context, int position) =>
-              const SingleFeed(),
-          controller: pageController,
-          onPageChanged: (int position) {
-            // print('page changed. current: $position');
-          },
-        ),
+      body: PreloadPageView.builder(
+        physics: const CustomPageViewScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        preloadPagesCount: 5,
+        itemBuilder: (BuildContext context, int position) => const SingleFeed(),
+        controller: pageController,
+        onPageChanged: (int position) {
+          // print('page changed. current: $position');
+        },
       ),
     );
   }
