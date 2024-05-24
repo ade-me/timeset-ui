@@ -336,17 +336,17 @@ class AuthProvider extends ChangeNotifier {
       int statusCode = response.statusCode;
 
       if (statusCode == 201) {
+        if (context.mounted) Navigator.pop(context);
+        Future.delayed(const Duration(seconds: 5), () {
+          _changeLoggedInState(true);
+        });
+
         if (context.mounted) {
-          Navigator.pop(context);
           CustomMessageBottomSheet.showBottomSheet(
             context,
             'Successful!',
             'You have successfully reset your password, you will be redirected to the login page in a few seconds',
           );
-
-          await Future.delayed(const Duration(seconds: 5), () {
-            _changeLoggedInState(true);
-          });
         }
       } else {
         List<dynamic> message = body['message'] as List<dynamic>;
