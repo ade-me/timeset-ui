@@ -47,7 +47,7 @@ class _FeedScreenState extends State<FeedScreen> {
           }),
         ),
         Positioned(
-          top: 2.5.h,
+          top: MediaQuery.of(context).viewPadding.top,
           child: CustomHomeScreenAppBar(
             pageController: pageController,
             currentIndex: currentIndex,

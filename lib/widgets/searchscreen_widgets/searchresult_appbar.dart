@@ -26,15 +26,9 @@ class _SearchResultAppBarState extends State<SearchResultAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: 75.sp,
-      title: CustomTextField(
-        textInputType: TextInputType.text,
-        textInputAction: TextInputAction.done,
+      toolbarHeight: 70.sp,
+      title: SearchTextField(
         controller: widget.searchTextController,
-        focusNode: widget.searchFocusNode,
-        iconName: 'search_inactive',
-        hintText: 'Search for anything',
-        iconColor: HexColor("#9CBB30"),
       ),
       titleSpacing: 15.sp,
       bottom: TabBar(

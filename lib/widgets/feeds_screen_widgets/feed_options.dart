@@ -60,7 +60,7 @@ class _FeedOptionsState extends State<FeedOptions> {
                   trimExpandedText: ' Read Less',
                   moreStyle: actionStyle,
                   lessStyle: actionStyle,
-                  trimLength: 55,
+                  trimLength: 22,
                 ),
               ),
               SizedBox(
