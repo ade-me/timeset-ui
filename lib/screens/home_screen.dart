@@ -44,29 +44,27 @@ class _HomeScreenState extends State<HomeScreen> {
       const SearchScreen(),
     ];
 
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            PageView(
-              controller: pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) => setState(() {
-                currentIndex = index;
-              }),
-              children: pages,
-            ),
-          ],
-        ),
-        bottomNavigationBar: Container(
-          color: const Color(0xFF202020),
-          height: 10.h,
-          child: CustomBottomNav(
-            pageController: pageController,
-            currentIndex: currentIndex,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: (index) => setState(() {
+              currentIndex = index;
+            }),
+            children: pages,
           ),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        color: const Color(0xFF202020),
+        height: 10.h,
+        child: CustomBottomNav(
+          pageController: pageController,
+          currentIndex: currentIndex,
         ),
       ),
     );
