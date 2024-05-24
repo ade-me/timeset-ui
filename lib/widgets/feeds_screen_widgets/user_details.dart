@@ -35,7 +35,7 @@ class _UserDetailsState extends State<UserDetails> {
             backgroundImage: NetworkImage(
               widget.userImage,
             ),
-            radius: 17.sp,
+            radius: 15.sp,
           ),
           SizedBox(
             width: 3.w,
@@ -48,7 +48,7 @@ class _UserDetailsState extends State<UserDetails> {
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
               SizedBox(
-                height: 0.5.h,
+                height: 0.3.h,
               ),
               Text(
                 widget.userInfo,

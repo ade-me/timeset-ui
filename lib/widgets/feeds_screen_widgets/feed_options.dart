@@ -77,7 +77,7 @@ class _FeedOptionsState extends State<FeedOptions> {
                 onTap: () {},
               ),
               SizedBox(
-                height: 4.h,
+                height: 2.5.h,
               ),
               Option(
                 icon: Icons.favorite_rounded,
@@ -86,7 +86,7 @@ class _FeedOptionsState extends State<FeedOptions> {
                 onTap: () {},
               ),
               SizedBox(
-                height: 4.h,
+                height: 2.5.h,
               ),
               Option(
                 hasCustomIcon: true,
@@ -97,7 +97,7 @@ class _FeedOptionsState extends State<FeedOptions> {
                 },
               ),
               SizedBox(
-                height: 4.h,
+                height: 2.5.h,
               ),
               Option(
                 hasCustomIcon: true,
@@ -110,7 +110,7 @@ class _FeedOptionsState extends State<FeedOptions> {
                 },
               ),
               SizedBox(
-                height: 4.h,
+                height: 2.7.h,
               ),
               Option(
                 hasCustomIcon: true,

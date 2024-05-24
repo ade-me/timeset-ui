@@ -35,12 +35,8 @@ class _FeedScreenState extends State<FeedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        CustomHomeScreenAppBar(
-          pageController: pageController,
-          currentIndex: currentIndex,
-        ),
         Expanded(
           child: PageView(
             physics: const NeverScrollableScrollPhysics(),
@@ -49,6 +45,14 @@ class _FeedScreenState extends State<FeedScreen> {
             onPageChanged: (index) => setState(() {
               currentIndex = index;
             }),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          child: CustomHomeScreenAppBar(
+            pageController: pageController,
+            currentIndex: currentIndex,
           ),
         ),
       ],

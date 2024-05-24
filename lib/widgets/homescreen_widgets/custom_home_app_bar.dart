@@ -18,7 +18,6 @@ class CustomHomeScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,
-      color: const Color(0xFF202020),
       padding: EdgeInsets.symmetric(
         vertical: 2.h,
         horizontal: 5.w,
