@@ -15,6 +15,7 @@ class SingleFeed extends StatefulWidget {
     required this.post,
     required this.isInView,
   });
+
   final Post post;
   final bool isInView;
 
@@ -47,10 +48,6 @@ class _SingleFeedState extends State<SingleFeed> {
       showControls: false,
     );
 
-    widget.isInView
-        ? await chewieController?.videoPlayerController.play()
-        : await chewieController?.videoPlayerController.pause();
-
     setState(() {});
   }
 
@@ -67,12 +64,19 @@ class _SingleFeedState extends State<SingleFeed> {
       initializeVideo();
     }
 
+    videoPlayerController?.addListener(
+      () async {
+        widget.isInView
+            ? await chewieController?.videoPlayerController.play()
+            : await chewieController?.videoPlayerController.pause();
+      },
+    );
+
     super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     videoPlayerController?.dispose();
