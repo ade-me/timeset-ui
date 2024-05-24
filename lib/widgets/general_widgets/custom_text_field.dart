@@ -232,9 +232,12 @@ class _SearchTextFieldState extends State<SearchTextField> {
         hintStyle: textTheme.bodyMedium?.copyWith(
           color: Colors.white54,
         ),
-        prefixIcon: Icon(
-          Icons.search_rounded,
-          color: theme.primaryColor,
+        prefixIcon: IconButton(
+          onPressed: null,
+          icon: SvgPicture.asset(
+            'assets/icons/search_inactive.svg',
+            color: HexColor("#9CBB30"),
+          ),
         ),
         border: outlineInputBorder,
         enabledBorder: outlineInputBorder,
@@ -242,8 +245,8 @@ class _SearchTextFieldState extends State<SearchTextField> {
         prefixIconConstraints: BoxConstraints(minWidth: 15.w),
         contentPadding: EdgeInsets.only(
           left: 5.w,
-          top: 2.5.h,
-          bottom: 2.5.h,
+          top: 1.8.h,
+          bottom: 1.8.h,
         ),
       ),
       onChanged: widget.onChanged,
