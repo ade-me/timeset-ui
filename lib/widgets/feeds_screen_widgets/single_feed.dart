@@ -30,27 +30,75 @@ class _SingleFeedState extends State<SingleFeed> {
 
   int currentIndex = 0;
 
-  Future initializeVideo() async {
-    videoPlayerController = VideoPlayerController.networkUrl(
-      Uri.parse(
-        widget.post.content[0].uri,
-      ),
+  Future<void> initializeVideo() async {
+    videoPlayerController = VideoPlayerController.network(
+      widget.post.content[0].uri,
     );
 
-    await videoPlayerController?.initialize();
+    await videoPlayerController!.initialize();
 
     chewieController = ChewieController(
       videoPlayerController: videoPlayerController!,
       looping: true,
-      aspectRatio: 16 / 9,
+      aspectRatio: 9 / 16,
       autoInitialize: true,
       showOptions: false,
       showControls: false,
     );
 
-    await chewieController?.videoPlayerController.play();
+    if (widget.isInView) {
+      await videoPlayerController!.play();
+    }
+  }
 
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.post.content.length == 1 &&
+        widget.post.content[0].type == "video") {
+      initializeVideo();
+    }
+
+    widget.isInView
+        ? videoPlayerController?.play()
+        : videoPlayerController?.pause();
+
+    widget.isInView
+        ? chewieController?.videoPlayerController.play()
+        : chewieController?.videoPlayerController.pause();
+
+    videoPlayerController?.addListener(() {
+      if (widget.isInView) {
+        if (!videoPlayerController!.value.isPlaying) {
+          videoPlayerController!.play();
+        }
+      } else {
+        if (videoPlayerController!.value.isPlaying) {
+          videoPlayerController!.pause();
+        }
+      }
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant SingleFeed oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.isInView != oldWidget.isInView) {
+      if (widget.isInView) {
+        videoPlayerController?.play();
+      } else {
+        videoPlayerController?.pause();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    videoPlayerController?.dispose();
+    chewieController?.dispose();
+    super.dispose();
   }
 
   void onPageChange(int index, CarouselPageChangedReason changeReason) {
@@ -60,97 +108,53 @@ class _SingleFeedState extends State<SingleFeed> {
   }
 
   @override
-  void initState() {
-    if (widget.post.content.length == 1 &&
-        widget.post.content[0].type == "video") {
-      initializeVideo();
-    }
-
-    videoPlayerController?.addListener(
-      () async {
-        widget.isInView
-            ? await chewieController?.videoPlayerController.play()
-            : await chewieController?.videoPlayerController.pause();
-      },
-    );
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    videoPlayerController?.dispose();
-    chewieController?.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          border: Border.symmetric(
-        horizontal: BorderSide(
-          color: Colors.white10,
-          width: 0.5,
+        border: Border.symmetric(
+          horizontal: BorderSide(
+            color: Colors.white10,
+            width: 0.5,
+          ),
         ),
-      )),
+      ),
       child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
           widget.post.content.length != 1
-              ? Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CarouselSlider(
-                        items: widget.post.content
-                            .map(
-                              (item) => item.type == "image"
-                                  ? Image.network(
-                                      item.uri,
-                                      fit: BoxFit.cover,
-                                      width: 100.w,
-                                    )
-                                  : chewieController == null
-                                      ? const SizedBox()
-                                      : AspectRatio(
-                                          aspectRatio: 16 / 9,
-                                          child: Chewie(
-                                            controller: chewieController!,
-                                          ),
-                                        ),
-                            )
-                            .toList(),
-                        carouselController: carouselController,
-                        options: CarouselOptions(
-                          height: 400,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 1,
-                          initialPage: 0,
-                          enableInfiniteScroll: false,
-                          reverse: false,
-                          autoPlay: false,
-                          enlargeCenterPage: true,
-                          enlargeFactor: 0,
-                          onPageChanged: onPageChange,
-                          scrollDirection: Axis.horizontal,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      AnimatedSmoothIndicator(
-                        activeIndex: currentIndex,
-                        count: widget.post.content.length,
-                        effect: WormEffect(
-                          dotHeight: 8,
-                          dotWidth: 8,
-                          activeDotColor: HexColor("#ffffff"),
-                          dotColor: const Color.fromRGBO(255, 255, 255, 0.3),
-                        ),
-                      ),
-                    ],
+              ? CarouselSlider(
+                  items: widget.post.content
+                      .map(
+                        (item) => item.type == "image"
+                            ? Image.network(
+                                item.uri,
+                                fit: BoxFit.cover,
+                                width: 100.w,
+                                height: 100.h,
+                              )
+                            : chewieController == null
+                                ? const SizedBox()
+                                : AspectRatio(
+                                    aspectRatio: 9 / 16,
+                                    child: Chewie(
+                                      controller: chewieController!,
+                                    ),
+                                  ),
+                      )
+                      .toList(),
+                  carouselController: carouselController,
+                  options: CarouselOptions(
+                    height: 100.h,
+                    aspectRatio: 9 / 16,
+                    viewportFraction: 1,
+                    initialPage: 0,
+                    enableInfiniteScroll: false,
+                    reverse: false,
+                    autoPlay: false,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0,
+                    onPageChanged: onPageChange,
+                    scrollDirection: Axis.horizontal,
                   ),
                 )
               : widget.post.content[0].type == "image"
@@ -165,12 +169,28 @@ class _SingleFeedState extends State<SingleFeed> {
                       : Container(
                           alignment: Alignment.center,
                           child: AspectRatio(
-                            aspectRatio: 16 / 9,
+                            aspectRatio: 9 / 16,
                             child: Chewie(
                               controller: chewieController!,
                             ),
                           ),
                         ),
+          Positioned(
+            bottom: 22.h,
+            child: Visibility(
+              visible: widget.post.content.length > 1,
+              child: AnimatedSmoothIndicator(
+                activeIndex: currentIndex,
+                count: widget.post.content.length,
+                effect: WormEffect(
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  activeDotColor: HexColor("#ffffff"),
+                  dotColor: const Color.fromRGBO(255, 255, 255, 0.3),
+                ),
+              ),
+            ),
+          ),
           const Positioned(
             bottom: 5,
             child: FeedOptions(),

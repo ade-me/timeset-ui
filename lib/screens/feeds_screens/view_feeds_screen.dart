@@ -25,7 +25,7 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
       content: [
         Content(
           uri:
-              "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "https://videos.pexels.com/video-files/5310962/5310962-sd_540_960_25fps.mp4",
           type: "video",
           effect: "none",
         )
@@ -41,7 +41,7 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
       content: [
         Content(
           uri:
-              "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1745",
+              "https://images.pexels.com/photos/1848565/pexels-photo-1848565.jpeg?auto=compress&cs=tinysrgb&w=600",
           type: "image",
           effect: "none",
         ),
@@ -65,7 +65,7 @@ class _ViewFeedsScreenState extends State<ViewFeedsScreen> {
       content: [
         Content(
           uri:
-              "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "https://videos.pexels.com/video-files/4880454/4880454-hd_720_1366_25fps.mp4",
           type: "video",
           effect: "none",
         )
