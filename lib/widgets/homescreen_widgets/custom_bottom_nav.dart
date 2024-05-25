@@ -8,11 +8,13 @@ import 'bottom_nav_icon.dart';
 class CustomBottomNav extends StatelessWidget {
   const CustomBottomNav({
     super.key,
+    required this.feedsPageCtr,
     required this.pageController,
     required this.currentIndex,
   });
 
   final PageController pageController;
+  final PageController feedsPageCtr;
   final int currentIndex;
 
   @override
@@ -37,6 +39,7 @@ class CustomBottomNav extends StatelessWidget {
               pageController: pageController,
               index: 0,
               currentIndex: currentIndex,
+              extraFunction: () => feedsPageCtr.jumpTo(0),
             ),
             BottomNavIcon(
               activeIconUrl: "assets/icons/search_active.svg",

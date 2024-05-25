@@ -6,7 +6,6 @@ import '../../widgets/auth_widgets/auth_button.dart';
 import '../../widgets/create_post_widgets/caption_textfield.dart';
 import '../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../widgets/general_widgets/general_app_padding.dart';
-import '../../widgets/create_post_widgets/cover_select.dart';
 import '../../widgets/create_post_widgets/options_tile.dart';
 import '../../widgets/create_post_widgets/tag_chip.dart';
 

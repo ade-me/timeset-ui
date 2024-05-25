@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 import 'package:timeset/models/content.dart';
 import 'package:timeset/repositories/post_repo.dart';
 import 'package:timeset/screens/home_screen.dart';

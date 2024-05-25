@@ -27,7 +27,7 @@ class FirebaseStorageUploader {
     List<Content> uploadedFiles = [];
 
     for (File file in files) {
-      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      // String fileName = DateTime.now().millisecondsSinceEpoch.toString();
       String fileType = _getFileType(file);
 
       String? downloadURL = await uploadProfileImage(file);

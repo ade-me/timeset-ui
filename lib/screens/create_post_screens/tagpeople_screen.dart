@@ -5,7 +5,6 @@ import 'package:sizer/sizer.dart';
 import '../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../widgets/general_widgets/custom_text_field.dart';
 import '../../widgets/general_widgets/general_app_padding.dart';
-import '../../widgets/create_post_widgets/user_select.dart';
 
 class TagpeopleScreen extends StatefulWidget {
   const TagpeopleScreen({super.key, required this.pageController});

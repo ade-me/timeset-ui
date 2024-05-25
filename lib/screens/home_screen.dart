@@ -23,6 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
     initialPage: 0,
   );
 
+  var feedsScreenController = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      const FeedScreen(),
+      FeedScreen(
+        pageController: feedsScreenController,
+      ),
       const SearchScreen(),
     ];
 
@@ -52,9 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
           PageView(
             controller: pageController,
             physics: const NeverScrollableScrollPhysics(),
-            onPageChanged: (index) => setState(() {
-              currentIndex = index;
-            }),
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
             children: pages,
           ),
         ],
@@ -65,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: CustomBottomNav(
           pageController: pageController,
           currentIndex: currentIndex,
+          feedsPageCtr: feedsScreenController,
         ),
       ),
     );

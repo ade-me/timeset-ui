@@ -10,6 +10,7 @@ class BottomNavIcon extends StatelessWidget {
     required this.index,
     required this.pageController,
     required this.currentIndex,
+    this.extraFunction,
   });
 
   final String activeIconUrl;
@@ -17,6 +18,7 @@ class BottomNavIcon extends StatelessWidget {
   final int index;
   final int currentIndex;
   final PageController pageController;
+  final Function()? extraFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -32,5 +34,6 @@ class BottomNavIcon extends StatelessWidget {
 
   void changePage(int index, context) {
     pageController.jumpToPage(index);
+    extraFunction!();
   }
 }
