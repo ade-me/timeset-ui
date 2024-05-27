@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:timeset/helpers/custom_scaffold_messenger.dart';
 import 'package:timeset/models/content.dart';
 import 'package:timeset/screens/create_post_screens/custom_camera.dart';
+import 'package:timeset/screens/create_post_screens/preview_media.dart';
 import 'package:timeset/services/firebase_storage_uploader.dart';
 import 'package:timeset/state_management/post_provider.dart';
 
@@ -92,6 +93,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           setState(() {});
         },
       ),
+      PreviewMedia(
+        files: files,
+        pageController: pageController,
+      ),
       PostScreen(
         pageController: pageController,
         captionFieldController: textController,
@@ -150,8 +155,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           description: "",
           files: files,
           allowComment: true,
-          people: [""],
-          product: [""],
+          people: [],
+          product: [],
           location: selectedLocation!["longLat"],
           context: context,
           scaffoldKey: _scaffoldKey,

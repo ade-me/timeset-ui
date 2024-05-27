@@ -128,9 +128,8 @@ class _SingleFeedState extends State<SingleFeed> {
                         (item) => item.type == "image"
                             ? Image.network(
                                 item.uri,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.contain,
                                 width: 100.w,
-                                height: 100.h,
                               )
                             : chewieController == null
                                 ? const SizedBox()

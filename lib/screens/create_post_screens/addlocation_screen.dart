@@ -42,71 +42,77 @@ class _AddlocationScreenState extends State<AddlocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: GeneralAppPadding(
-          verticalPadding: 10,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppBarWithBackButton(
-                title: "Add location",
-                hasCustomFunction: true,
-                function: () {
-                  widget.pageController.jumpToPage(
-                    1,
-                  );
-                },
-              ),
-              SizedBox(
-                height: 1.w,
-              ),
-              CustomTextField(
-                onChanged: (value) {
-                  if (value.isNotEmpty) {
-                    _fetchPredictions(value);
-                  } else {
-                    setState(() {
-                      _predictions.clear();
-                    });
-                  }
-                },
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.search,
-                controller: searchTextController,
-                focusNode: searchFocusNode,
-                iconName: 'search_inactive',
-                hintText: 'Search for a location',
-                iconColor: HexColor("#9CBB30"),
-              ),
-              SizedBox(
-                height: 3.h,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _predictions.length,
-                  itemBuilder: (context, index) {
-                    return LocationSelect(
-                      onTap: () async {
-                        List<String> longLat =
-                            await LocationHelper.getLatLngFromAddress(
-                          _predictions[index],
-                        );
-                        widget.onLocationSelected!({
-                          "description": _predictions[index],
-                          "longLat": longLat
-                        });
-                        widget.pageController.jumpToPage(
-                          1,
-                        );
-                      },
-                      title: _predictions[index],
-                      address: "54, Pine street, nigga avenue",
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (willPop) {
+        widget.pageController.jumpToPage(2);
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: GeneralAppPadding(
+            verticalPadding: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppBarWithBackButton(
+                  title: "Add location",
+                  hasCustomFunction: true,
+                  function: () {
+                    widget.pageController.jumpToPage(
+                      2,
                     );
                   },
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 1.w,
+                ),
+                CustomTextField(
+                  onChanged: (value) {
+                    if (value.isNotEmpty) {
+                      _fetchPredictions(value);
+                    } else {
+                      setState(() {
+                        _predictions.clear();
+                      });
+                    }
+                  },
+                  textInputType: TextInputType.text,
+                  textInputAction: TextInputAction.search,
+                  controller: searchTextController,
+                  focusNode: searchFocusNode,
+                  iconName: 'search_inactive',
+                  hintText: 'Search for a location',
+                  iconColor: HexColor("#9CBB30"),
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _predictions.length,
+                    itemBuilder: (context, index) {
+                      return LocationSelect(
+                        onTap: () async {
+                          List<String> longLat =
+                              await LocationHelper.getLatLngFromAddress(
+                            _predictions[index],
+                          );
+                          widget.onLocationSelected!({
+                            "description": _predictions[index],
+                            "longLat": longLat
+                          });
+                          widget.pageController.jumpToPage(
+                            2,
+                          );
+                        },
+                        title: _predictions[index],
+                        address: "54, Pine street, nigga avenue",
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

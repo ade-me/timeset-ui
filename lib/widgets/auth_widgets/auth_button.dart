@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/constants/app_colors.dart';
 import 'package:timeset/widgets/general_widgets/circular_loader.dart';
 
 class AuthButton extends StatelessWidget {
@@ -15,6 +16,7 @@ class AuthButton extends StatelessWidget {
     this.isDisabled = false,
     this.hasIcon = false,
     this.icon = "",
+    this.grayButton = false,
   });
 
   final String text;
@@ -25,6 +27,7 @@ class AuthButton extends StatelessWidget {
   final Function function;
   final bool hasIcon;
   final String icon;
+  final bool grayButton;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,15 @@ class AuthButton extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
+            border: grayButton
+                ? Border.all(
+                    width: 2,
+                    color: HexColor("#2C2C2C"),
+                  )
+                : Border.all(
+                    width: 0,
+                    color: AppColors.primary,
+                  ),
           ),
           child: isLoading == true
               ? const CustomProgressIndicator()

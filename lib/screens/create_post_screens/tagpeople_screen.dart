@@ -30,54 +30,60 @@ class _TagpeopleScreenState extends State<TagpeopleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            GeneralAppPadding(
-              verticalPadding: 10,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppBarWithBackButton(
-                    title: "Tag people",
-                    hasCustomFunction: true,
-                    function: () {
-                      widget.pageController.jumpToPage(
-                        1,
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: 1.w,
-                  ),
-                  CustomTextField(
-                    textInputType: TextInputType.text,
-                    textInputAction: TextInputAction.search,
-                    controller: searchTextController,
-                    focusNode: searchFocusNode,
-                    iconName: 'search_inactive',
-                    hintText: 'Search for user',
-                    iconColor: HexColor("#9CBB30"),
-                  ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
-                  const Text(
-                    "3/20 Selected",
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  // const UserSelect(
-                  //   userName: "Ariana Grande",
-                  //   userImage: "",
-                  //   userInfo: "arianagrande | 27.3M followers",
-                  // ),
-                ],
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (willPop) {
+        widget.pageController.jumpToPage(2);
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              GeneralAppPadding(
+                verticalPadding: 10,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppBarWithBackButton(
+                      title: "Tag people",
+                      hasCustomFunction: true,
+                      function: () {
+                        widget.pageController.jumpToPage(
+                          2,
+                        );
+                      },
+                    ),
+                    SizedBox(
+                      height: 1.w,
+                    ),
+                    CustomTextField(
+                      textInputType: TextInputType.text,
+                      textInputAction: TextInputAction.search,
+                      controller: searchTextController,
+                      focusNode: searchFocusNode,
+                      iconName: 'search_inactive',
+                      hintText: 'Search for user',
+                      iconColor: HexColor("#9CBB30"),
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    const Text(
+                      "3/20 Selected",
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    // const UserSelect(
+                    //   userName: "Ariana Grande",
+                    //   userImage: "",
+                    //   userInfo: "arianagrande | 27.3M followers",
+                    // ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
