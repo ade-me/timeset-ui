@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/constants/app_colors.dart';
 import 'package:timeset/widgets/general_widgets/circular_loader.dart';
 
 class AuthButton extends StatelessWidget {
@@ -54,7 +53,7 @@ class AuthButton extends StatelessWidget {
                   )
                 : Border.all(
                     width: 0,
-                    color: AppColors.primary,
+                    color: Colors.transparent,
                   ),
           ),
           child: isLoading == true
