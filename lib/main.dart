@@ -14,6 +14,7 @@ import 'state_management/shared_pref.dart';
 import 'state_management/auth_provider.dart';
 import 'state_management/country_provider.dart';
 import 'firebase_options.dart';
+import 'state_management/user_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => PostProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => UserProvider(),
           ),
         ],
         builder: (context, child) {
@@ -94,7 +98,7 @@ class MyApp extends StatelessWidget {
                 selectionHandleColor: AppColors.primary,
               ),
             ),
-            home: !Provider.of<AuthProvider>(context).isLoggedIn
+            home: Provider.of<AuthProvider>(context).isLoggedIn
                 ? const HomeScreen()
                 : const Onboarding(),
             onGenerateRoute: (settings) =>

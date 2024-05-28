@@ -25,7 +25,6 @@ class ApiClient {
 
     Map<String, String> headers = {
       'Content-Type': 'application/json',
-      'Platform': 'mobile',
       'Authorization': 'Bearer ${sharedPrefPvr.authToken}',
     };
 
@@ -61,6 +60,30 @@ class ApiClient {
   }) async {
     Response response = await http
         .post(
+          Uri.parse('${ApiUrls.baseUrl}$endpoint'),
+          headers: _buildHeaders(),
+          body: jsonEncode(body),
+        )
+        .timeout(const Duration(seconds: 30))
+        .then(
+      (value) {
+        tokenExpired(value);
+
+        return value;
+      },
+    );
+
+    return response;
+  }
+
+  // Patch data
+  static Future<Response> patchData(
+    String endpoint, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    Response response = await http
+        .patch(
           Uri.parse('${ApiUrls.baseUrl}$endpoint'),
           headers: _buildHeaders(),
           body: jsonEncode(body),

@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../models/country.dart';
 import '../../models/gender.dart';
+import '../../state_management/user_provider.dart';
 import '../../widgets/auth_widgets/auth_button.dart';
 import 'profile_setup_steps/step_1.dart';
 import 'profile_setup_steps/step_2.dart';
@@ -89,68 +91,113 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
   void getCountryCode(Country newCountry) =>
       setState(() => selectedCountry = newCountry);
 
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: pageViewController,
-                onPageChanged: handlePageViewChanged,
-                children: [
-                  Step1(getProfileInterests: getProfileInterests),
-                  Step2(
-                    goBack: goBack,
-                    gender: gender,
-                    getGender: getGender,
-                  ),
-                  Step3(
-                    goBack: goBack,
-                    dateOfBirth: dateOfBirth,
-                    getDateOfBirth: getDateOfBirth,
-                  ),
-                  Step4(
-                    goBack: goBack,
-                    getInputsStatus: getInputStatus,
-                    getFullName: getFullName,
-                    getUsername: getUsername,
-                    getEmail: getEmail,
-                    getPhoneNumber: getPhoneNumber,
-                    getAddress: getAddress,
-                    getSelectedCountry: getCountryCode,
-                    currentCountry: selectedCountry,
-                    getImageFile: getImageFile,
-                  ),
-                ],
+      body: ScaffoldMessenger(
+        key: _scaffoldKey,
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: pageViewController,
+                  onPageChanged: handlePageViewChanged,
+                  children: [
+                    Step1(
+                      getProfileInterests: getProfileInterests,
+                      selectedProfileInterests: selectedProfileInterests,
+                    ),
+                    Step2(
+                      goBack: goBack,
+                      gender: gender,
+                      getGender: getGender,
+                    ),
+                    Step3(
+                      goBack: goBack,
+                      dateOfBirth: dateOfBirth,
+                      getDateOfBirth: getDateOfBirth,
+                    ),
+                    Step4(
+                      goBack: goBack,
+                      getInputsStatus: getInputStatus,
+                      getFullName: getFullName,
+                      getUsername: getUsername,
+                      getEmail: getEmail,
+                      getPhoneNumber: getPhoneNumber,
+                      getAddress: getAddress,
+                      getSelectedCountry: getCountryCode,
+                      currentCountry: selectedCountry,
+                      getImageFile: getImageFile,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.w),
-              child: AuthButton(
-                text: 'Continue',
-                isDisabled:
-                    currentPage == 0 && selectedProfileInterests.isNotEmpty
-                        ? true
-                        : currentPage == 1 && gender == Gender.others
-                            ? true
-                            : currentPage == 3 && inputsStatus
-                                ? true
-                                : false,
-                function: () {
-                  if (currentPage == 3) {
-                    return;
-                  }
-                  nextPage();
-                },
-              ),
-            )
-          ],
+              Padding(
+                padding: EdgeInsets.all(5.w),
+                child: AuthButton(
+                  text: 'Continue',
+                  isDisabled:
+                      currentPage == 0 && selectedProfileInterests.isEmpty
+                          ? true
+                          : currentPage == 1 && gender == Gender.others
+                              ? true
+                              : currentPage == 3 && !inputsStatus
+                                  ? true
+                                  : false,
+                  function: () {
+                    if (currentPage == 3) {
+                      if (context.mounted) {
+                        updateUserProfile();
+                      }
+                      return;
+                    }
+                    nextPage();
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  void updateUserProfile() async {
+    var userPvr = Provider.of<UserProvider>(context, listen: false);
+
+    String userGender = 'Other';
+
+    switch (gender) {
+      case Gender.male:
+        userGender = 'Male';
+        break;
+      case Gender.female:
+        userGender = 'Female';
+        break;
+      default:
+        userGender = 'Others';
+        break;
+    }
+
+    Map<String, dynamic> body = {
+      "fullName": fullName,
+      "interest": selectedProfileInterests,
+      "username": username,
+      "phone": int.parse(phoneNumber),
+      "gender": userGender,
+      "address": address,
+      "dob": dateOfBirth.toString()
+    };
+
+    await userPvr.updateUserProfile(
+      context: context,
+      body: body,
+      scaffoldKey: _scaffoldKey,
     );
   }
 }

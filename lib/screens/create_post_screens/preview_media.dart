@@ -54,7 +54,7 @@ class _PreviewMediaState extends State<PreviewMedia> {
     });
 
     if (getFileType(widget.files[0]) == "video") {
-      // _initializeChewieController(currentIndex);
+      _initializeChewieController(currentIndex);
     }
   }
 

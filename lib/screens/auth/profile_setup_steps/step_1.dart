@@ -7,8 +7,13 @@ import '../../../widgets/general_widgets/app_bar_with_back_button.dart';
 import '../../../widgets/general_widgets/general_app_padding.dart';
 
 class Step1 extends StatefulWidget {
-  const Step1({super.key, required this.getProfileInterests});
+  const Step1({
+    super.key,
+    required this.getProfileInterests,
+    required this.selectedProfileInterests,
+  });
 
+  final List<String> selectedProfileInterests;
   final Function(List<String>) getProfileInterests;
 
   @override
@@ -18,6 +23,13 @@ class Step1 extends StatefulWidget {
 class _Step1State extends State<Step1> {
   List<String> profileInterests = ProfileInterestItems.items;
   List<String> selectedProfileInterests = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    selectedProfileInterests = widget.selectedProfileInterests;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +65,8 @@ class _Step1State extends State<Step1> {
                                 : selectedProfileInterests.remove(e);
                           },
                         );
+
+                        widget.getProfileInterests(selectedProfileInterests);
                       },
                       child: CustomChip(
                         text: e,

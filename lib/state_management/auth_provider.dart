@@ -53,7 +53,7 @@ class AuthProvider extends ChangeNotifier {
       dynamic body = jsonDecode(response.body);
       int statusCode = response.statusCode;
 
-      if (statusCode == 200) {
+      if (statusCode == 201) {
         _changeLoggedInState(true);
         if (context.mounted) {
           var sharedPref = Provider.of<SharedPref>(context, listen: false);
@@ -114,6 +114,9 @@ class AuthProvider extends ChangeNotifier {
       int statusCode = response.statusCode;
 
       if (statusCode == 201 && body['success'] == true) {
+        _changeLoggedInState(true);
+        await _verifyEmail(email: email);
+
         if (context.mounted) {
           var sharedPref = Provider.of<SharedPref>(context, listen: false);
 
@@ -375,6 +378,22 @@ class AuthProvider extends ChangeNotifier {
 
         Navigator.pop(context);
       }
+    }
+  }
+
+  Future<void> _verifyEmail({
+    required String email,
+  }) async {
+    try {
+      Response response = await AuthRepo.verifyEmail(
+        email: email,
+      );
+
+      if (response.statusCode != 200) {
+        return;
+      }
+    } catch (e) {
+      print('Error verifying user email: $e');
     }
   }
 }

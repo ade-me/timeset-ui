@@ -73,7 +73,9 @@ class _Step4State extends State<Step4> {
   void checkInputsStatus() {
     if (allInputStatus.length == 5) {
       if (allInputStatus.any((element) => element != false)) {
-        inputsStatus = true;
+        setState(() {
+          inputsStatus = true;
+        });
       }
     }
 
@@ -291,7 +293,7 @@ class _Step4State extends State<Step4> {
               minWidth: 27,
               flagUrl:
                   "https://country-code-au6g.vercel.app/${widget.currentCountry.image}",
-              onEditingComplete: () {
+              onChanged: (value) {
                 widget.getPhoneNumber(
                   phoneTextController.text.trim(),
                 );

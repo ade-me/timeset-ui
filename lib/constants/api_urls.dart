@@ -8,6 +8,10 @@ class ApiUrls {
   static const findUserEmail = 'auth/email@gmail.com';
   static const sendVeriCode = 'auth/get-code';
   static const verifyOtpCode = 'auth/verify-code';
+  static const verifyEmail = 'auth/verify/';
+
+  // User profile urls
+  static const updateUser = 'user/profile';
 
   // Post urls
   static const post = "post";

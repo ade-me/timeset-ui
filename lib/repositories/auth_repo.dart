@@ -70,4 +70,12 @@ class AuthRepo {
       'auth/$email',
     );
   }
+
+  static Future<Response> verifyEmail({
+    required String email,
+  }) async {
+    return ApiClient.fetchData(
+      '${ApiUrls.verifyEmail}$email',
+    );
+  }
 }
