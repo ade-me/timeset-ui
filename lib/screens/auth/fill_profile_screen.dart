@@ -197,7 +197,7 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
     await userPvr.updateUserProfile(
       context: context,
       body: body,
-      // scaffoldKey: _scaffoldKey,
+      scaffoldKey: _scaffoldKey,
     );
   }
 }

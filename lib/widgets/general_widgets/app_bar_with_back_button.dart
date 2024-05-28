@@ -12,6 +12,7 @@ class AppBarWithBackButton extends StatelessWidget
   final bool hasCustomFunction;
   final List<Widget>? actions;
   final bool centerTitle;
+  final bool hasBackButton;
 
   const AppBarWithBackButton({
     super.key,
@@ -20,6 +21,7 @@ class AppBarWithBackButton extends StatelessWidget
     this.hasCustomFunction = false,
     this.actions,
     this.centerTitle = false,
+    this.hasBackButton = true,
   });
 
   @override
@@ -31,15 +33,19 @@ class AppBarWithBackButton extends StatelessWidget
         children: [
           // back button
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CustomAppBarIcon(
-                icon: 'back',
-                function: () => hasCustomFunction
-                    ? function!()
-                    : Navigator.of(context).pop(),
+              Visibility(
+                visible: hasBackButton,
+                child: CustomAppBarIcon(
+                  icon: 'back',
+                  function: () => hasCustomFunction
+                      ? function!()
+                      : Navigator.of(context).pop(),
+                ),
               ),
               SizedBox(
-                width: 15.sp,
+                width: hasBackButton ? 15.sp : 0,
               ),
               titleWidget(
                 visible: !centerTitle,
@@ -64,7 +70,8 @@ class AppBarWithBackButton extends StatelessWidget
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

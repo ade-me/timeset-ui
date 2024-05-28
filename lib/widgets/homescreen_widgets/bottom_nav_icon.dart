@@ -34,6 +34,8 @@ class BottomNavIcon extends StatelessWidget {
 
   void changePage(int index, context) {
     pageController.jumpToPage(index);
-    extraFunction!();
+    if (extraFunction != null) {
+      extraFunction!();
+    }
   }
 }

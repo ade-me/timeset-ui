@@ -114,53 +114,56 @@ class _CustomTextFieldState extends State<CustomTextField> {
             width: 1.sp,
           ),
         ),
-        prefixIcon: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: widget.hasCustomIcon
-                  ? Icon(
-                      widget.customIcon,
-                      color: HexColor("#9CBB30"),
-                    )
-                  : IconButton(
-                      onPressed: null,
-                      icon: SvgPicture.asset(
-                        'assets/icons/${widget.iconName}.svg',
-                        color: widget.iconColor,
+        prefixIcon: Visibility(
+          visible: widget.hasCustomIcon || widget.iconName.isNotEmpty,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: widget.hasCustomIcon
+                    ? Icon(
+                        widget.customIcon,
+                        color: HexColor("#9CBB30"),
+                      )
+                    : IconButton(
+                        onPressed: null,
+                        icon: SvgPicture.asset(
+                          'assets/icons/${widget.iconName}.svg',
+                          color: widget.iconColor,
+                        ),
                       ),
+              ),
+              widget.hasDropdown
+                  ? SizedBox(
+                      width: 10.sp,
+                    )
+                  : const SizedBox(
+                      width: 0,
                     ),
-            ),
-            widget.hasDropdown
-                ? SizedBox(
-                    width: 10.sp,
-                  )
-                : const SizedBox(
-                    width: 0,
-                  ),
-            widget.hasDropdown
-                ? GestureDetector(
-                    onTap: widget.onDropdown,
-                    child: Row(
-                      children: [
-                        SvgPicture.network(
-                          widget.flagUrl,
-                          width: 17.sp,
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Colors.white,
-                          size: 13.sp,
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(
-                    width: 0,
-                  )
-          ],
+              widget.hasDropdown
+                  ? GestureDetector(
+                      onTap: widget.onDropdown,
+                      child: Row(
+                        children: [
+                          SvgPicture.network(
+                            widget.flagUrl,
+                            width: 17.sp,
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_outlined,
+                            color: Colors.white,
+                            size: 13.sp,
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox(
+                      width: 0,
+                    )
+            ],
+          ),
         ),
         prefixIconConstraints: BoxConstraints(minWidth: widget.minWidth.w),
         contentPadding: EdgeInsets.only(

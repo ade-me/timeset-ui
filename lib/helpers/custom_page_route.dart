@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:timeset/screens/create_post_screens/create_post_screen.dart';
+import 'package:timeset/screens/profile_screens/edit_profile_root.dart';
+import 'package:timeset/screens/settings_screens/settings_root.dart';
 
 import '../screens/home_screen.dart';
 import '../screens/search/search_result_screen.dart';
@@ -83,6 +85,16 @@ class CustomPageRoute {
       case CheckOutScreen.routeName:
         return _pageTransition(
           child: const CheckOutScreen(),
+          settings: settings,
+        );
+      case SettingsRoot.routeName:
+        return _pageTransition(
+          child: const SettingsRoot(),
+          settings: settings,
+        );
+      case EditProfileRoot.routeName:
+        return _pageTransition(
+          child: const EditProfileRoot(),
           settings: settings,
         );
       default:

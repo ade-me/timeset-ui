@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.transparent,
               ),
+              splashColor: Colors.white10,
               primaryColor: AppColors.primary,
               fontFamily: 'pjs',
               scaffoldBackgroundColor: AppColors.scaffoldColor,

@@ -9,7 +9,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timeset/constants/app_colors.dart';
 import 'package:timeset/helpers/custom_scaffold_messenger.dart';
-import 'package:timeset/helpers/format_time.dart';
+import 'package:timeset/helpers/formatter.dart';
 import 'package:timeset/helpers/get_file_type.dart';
 import 'package:timeset/services/file_picker.dart';
 import 'package:timeset/widgets/create_post_widgets/cam_mode.dart';
@@ -301,7 +301,7 @@ class CustomCameraScreenState extends State<CustomCameraScreen> {
                                   isSelected: currentIndex == 0,
                                   onTap: () {
                                     // print("photo");
-                                    // carouselController.nextPage();
+                                    carouselController.nextPage();
                                   },
                                 ),
                                 CamMode(
@@ -310,7 +310,7 @@ class CustomCameraScreenState extends State<CustomCameraScreen> {
                                   isSelected: currentIndex == 1,
                                   onTap: () {
                                     // print("video");
-                                    // carouselController.previousPage();
+                                    carouselController.previousPage();
                                   },
                                 ),
                               ]),

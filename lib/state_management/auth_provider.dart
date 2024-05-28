@@ -53,7 +53,7 @@ class AuthProvider extends ChangeNotifier {
       dynamic body = jsonDecode(response.body);
       int statusCode = response.statusCode;
 
-      if (statusCode == 201) {
+      if (statusCode == 200) {
         _changeLoggedInState(true);
         if (context.mounted) {
           var sharedPref = Provider.of<SharedPref>(context, listen: false);

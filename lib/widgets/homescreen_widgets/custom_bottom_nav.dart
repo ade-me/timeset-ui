@@ -74,20 +74,25 @@ class CustomBottomNav extends StatelessWidget {
               index: 2,
               currentIndex: currentIndex,
             ),
-            Container(
-              height: 3.1.h,
-              width: 3.1.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.h),
-                border: Border.all(
-                  color: HexColor("#9CBB30"),
-                  width: 1,
-                ),
-                image: const DecorationImage(
-                  image: NetworkImage(
-                    'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D',
+            GestureDetector(
+              onTap: () {
+                pageController.jumpToPage(3);
+              },
+              child: Container(
+                height: 3.1.h,
+                width: 3.1.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.h),
+                  border: Border.all(
+                    color: HexColor("#9CBB30"),
+                    width: 1,
                   ),
-                  fit: BoxFit.cover,
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                      'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             )

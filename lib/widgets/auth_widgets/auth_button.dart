@@ -16,6 +16,10 @@ class AuthButton extends StatelessWidget {
     this.hasIcon = false,
     this.icon = "",
     this.grayButton = false,
+    this.borderColor = "#00FFFFFF",
+    this.customIcon = Icons.abc,
+    this.hasCustomIcon = false,
+    this.customHeight = 7,
   });
 
   final String text;
@@ -25,8 +29,12 @@ class AuthButton extends StatelessWidget {
   final bool isDisabled;
   final Function function;
   final bool hasIcon;
+  final bool hasCustomIcon;
+  final IconData customIcon;
   final String icon;
   final bool grayButton;
+  final String borderColor;
+  final double customHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class AuthButton extends StatelessWidget {
         splashColor: Colors.white10,
         borderRadius: BorderRadius.circular(30),
         child: Container(
-          height: 7.h,
+          height: customHeight.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
@@ -52,8 +60,8 @@ class AuthButton extends StatelessWidget {
                     color: HexColor("#2C2C2C"),
                   )
                 : Border.all(
-                    width: 0,
-                    color: Colors.transparent,
+                    width: 2,
+                    color: HexColor(borderColor),
                   ),
           ),
           child: isLoading == true
@@ -63,9 +71,14 @@ class AuthButton extends StatelessWidget {
                   children: [
                     hasIcon
                         ? SvgPicture.asset("assets/icons/$icon.svg")
-                        : const SizedBox(),
+                        : hasCustomIcon
+                            ? Icon(
+                                customIcon,
+                                color: HexColor(color),
+                              )
+                            : const SizedBox(),
                     SizedBox(
-                      width: hasIcon ? 7.sp : 0,
+                      width: hasIcon || hasCustomIcon ? 7.sp : 0,
                     ),
                     Text(
                       text,

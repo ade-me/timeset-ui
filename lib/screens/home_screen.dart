@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
+import 'package:timeset/screens/chat_screens/chat_screen.dart';
+import 'package:timeset/screens/profile_screens/profile_screen.dart';
 
 import '../screens/feed_screen.dart';
 import '../screens/search/search_screen.dart';
@@ -23,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     initialPage: 0,
   );
 
-  var feedsScreenController = PageController();
+  var feedsScreenController = PageController(initialPage: 0);
 
   @override
   void initState() {
@@ -46,6 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
         pageController: feedsScreenController,
       ),
       const SearchScreen(),
+      const ChatScreen(),
+      const ProfileScreen(),
     ];
 
     return Scaffold(
