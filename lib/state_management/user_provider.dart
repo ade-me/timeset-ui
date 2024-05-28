@@ -25,7 +25,7 @@ class UserProvider with ChangeNotifier {
   Future<void> updateUserProfile({
     required BuildContext context,
     required Map<String, dynamic> body,
-    required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+    // required GlobalKey<ScaffoldMessengerState> scaffoldKey,
   }) async {
     try {
       _changeLoadingState(true);
@@ -65,26 +65,26 @@ class UserProvider with ChangeNotifier {
         print('Error updating user profile: $message');
         _changeLoadingState(false);
         if (context.mounted) {
-          showScaffoldMessenger(
-            scaffoldKey: scaffoldKey,
-            textContent: message,
-            context: context,
-          );
+          // showScaffoldMessenger(
+          //   scaffoldKey: scaffoldKey,
+          //   textContent: message,
+          //   context: context,
+          // );
 
-          Navigator.pop(context);
+          // Navigator.pop(context);
         }
       }
     } catch (e) {
       print('Error updating user profile: $e');
       _changeLoadingState(false);
       if (context.mounted) {
-        showScaffoldMessenger(
-          scaffoldKey: scaffoldKey,
-          textContent: 'An error occured, please try again.',
-          context: context,
-        );
+        // showScaffoldMessenger(
+        //   scaffoldKey: scaffoldKey,
+        //   textContent: 'An error occured, please try again.',
+        //   context: context,
+        // );
 
-        Navigator.pop(context);
+        // Navigator.pop(context);s
       }
     }
   }
