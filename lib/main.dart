@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
                 selectionHandleColor: AppColors.primary,
               ),
             ),
-            home: Provider.of<AuthProvider>(context).isLoggedIn
+            home: !Provider.of<AuthProvider>(context).isLoggedIn
                 ? const HomeScreen()
                 : const Onboarding(),
             onGenerateRoute: (settings) =>
