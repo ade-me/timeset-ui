@@ -5,6 +5,7 @@ import 'package:timeset/screens/profile_screens/edit_profile_root.dart';
 import 'package:timeset/screens/settings_screens/settings_root.dart';
 
 import '../screens/chat_screens/activities_screen.dart';
+import '../screens/chat_screens/chat_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/search/search_result_screen.dart';
 import '../screens/auth/create_new_password_screen.dart';
@@ -101,6 +102,11 @@ class CustomPageRoute {
       case ActivitiesScreen.routeName:
         return _pageTransition(
           child: const ActivitiesScreen(),
+          settings: settings,
+        );
+      case ChatScreen.routeName:
+        return _pageTransition(
+          child: const ChatScreen(),
           settings: settings,
         );
       default:
