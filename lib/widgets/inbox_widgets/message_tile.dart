@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
+import '../../helpers/datetime_formatter.dart';
 import '../general_widgets/general_app_padding.dart';
 
 class MessagesTile extends StatelessWidget {
@@ -77,7 +78,10 @@ class MessagesTile extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  '18:59',
+                  index == 0
+                      ? DatetimeFormatter.timeAgo(DateTime.now())
+                      : DatetimeFormatter.timeAgo(
+                          DateTime(2024, 5, 28, 12, 35, 55)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.white70,
                       ),

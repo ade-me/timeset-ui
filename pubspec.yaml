@@ -41,6 +41,8 @@ dependencies:
   firebase_core: ^2.31.1
   firebase_storage: ^11.7.6
   geocoding: ^3.0.0
+  timeago: ^3.6.1
+  grouped_list: ^5.1.2
 
 
 flutter_icons: # flutter_launcher_icons configuration
