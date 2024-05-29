@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/screens/chat_screens/chat_screen.dart';
-import 'package:timeset/screens/profile_screens/profile_screen.dart';
 
 import '../screens/feed_screen.dart';
 import '../screens/search/search_screen.dart';
 import '../../widgets/homescreen_widgets/custom_bottom_nav.dart';
 import '../services/api_client.dart';
+import 'chat_screens/inbox_screen.dart';
+import 'profile_screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/HomeScreen';
@@ -48,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         pageController: feedsScreenController,
       ),
       const SearchScreen(),
-      const ChatScreen(),
+      const InboxScreen(),
       const ProfileScreen(),
     ];
 
