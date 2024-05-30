@@ -5,24 +5,10 @@ import '../../widgets/inbox_widgets/chat_bubble.dart';
 import '../../widgets/inbox_widgets/chat_screen_app_bar.dart';
 import '../../widgets/inbox_widgets/send_text_field.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   static const routeName = '/ChatScreen';
 
   const ChatScreen({super.key});
-
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  final _messageTextController = TextEditingController();
-
-  @override
-  void dispose() {
-    _messageTextController.dispose();
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +21,8 @@ class _ChatScreenState extends State<ChatScreen> {
               child: ListView.builder(
                 itemCount: 15,
                 reverse: true,
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (ctx, index) {
                   bool isMe = index.isOdd;
@@ -47,9 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
               height: 0,
             ),
             SizedBox(height: 1.h),
-            SendTextField(
-              messageTextController: _messageTextController,
-            ),
+            const SendTextField(),
             SizedBox(height: 1.h),
           ],
         ),
