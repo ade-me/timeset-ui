@@ -5,7 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomMessageBottomSheet {
-  static void showBottomSheet(context, title, description) {
+  static void showBottomSheet(context, title, description, icon) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -16,7 +16,6 @@ class CustomMessageBottomSheet {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 25.h,
               padding: EdgeInsets.all(15.sp),
               decoration: BoxDecoration(
                 color: HexColor("#212121"),
@@ -26,6 +25,7 @@ class CustomMessageBottomSheet {
                 ),
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(height: 30.sp),
                   Text(
@@ -38,12 +38,18 @@ class CustomMessageBottomSheet {
                   SizedBox(
                     height: 2.h,
                   ),
-                  Text(
-                    description,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 10.sp,
+                  SizedBox(
+                    width: 80.w,
+                    child: Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 11.sp,
+                      ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
                   ),
                 ],
               ),
@@ -64,8 +70,8 @@ class CustomMessageBottomSheet {
                     color: HexColor("#141414"),
                   ),
                 ),
-                child: const Icon(
-                  Icons.check,
+                child: Icon(
+                  icon,
                   weight: 20,
                   size: 50,
                 ),

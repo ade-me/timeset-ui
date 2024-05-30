@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
@@ -15,8 +16,8 @@ class CustomDivider extends StatelessWidget {
     return Column(
       children: [
         sizedBox,
-        const Divider(
-          thickness: 0.2,
+        Divider(
+          color: HexColor("#2c2c2c"),
         ),
         sizedBox,
       ],

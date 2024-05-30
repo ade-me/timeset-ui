@@ -8,10 +8,12 @@ class CustomAppBarIcon extends StatelessWidget {
     super.key,
     required this.function,
     required this.icon,
+    this.color = "#ffffff",
   });
 
   final Function()? function;
   final String icon;
+  final String color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,10 @@ class CustomAppBarIcon extends StatelessWidget {
         ),
         padding: EdgeInsets.all(9.sp),
         alignment: Alignment.center,
-        child: SvgPicture.asset('assets/icons/$icon.svg'),
+        child: SvgPicture.asset(
+          'assets/icons/$icon.svg',
+          color: HexColor(color),
+        ),
       ),
     );
   }

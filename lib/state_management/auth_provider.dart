@@ -349,6 +349,7 @@ class AuthProvider extends ChangeNotifier {
             context,
             'Successful!',
             'You have successfully reset your password, you will be redirected to the login page in a few seconds',
+            Icons.check,
           );
         }
       } else {

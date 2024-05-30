@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/constants/app_colors.dart';
+
+import '../../constants/app_colors.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -27,6 +28,7 @@ class CustomTextField extends StatefulWidget {
     this.iconColor = Colors.white,
     this.validator,
     this.onChanged,
+    this.borderRadius = 50,
   });
 
   final String? Function(String?)? validator;
@@ -46,6 +48,7 @@ class CustomTextField extends StatefulWidget {
   final double minWidth;
   final String flagUrl;
   final Color iconColor;
+  final double borderRadius;
   final Function(String)? onChanged;
 
   @override
@@ -57,8 +60,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   bool _hasFocus = false;
 
-  void checkFocus() => setState(
-      () => widget.focusNode.hasFocus ? _hasFocus = true : _hasFocus = false);
+  void checkFocus() {
+    if (mounted) {
+      setState(() =>
+          widget.focusNode.hasFocus ? _hasFocus = true : _hasFocus = false);
+    }
+  }
 
   void toggleIsObscure() => setState(() => isObscure = !isObscure);
 
@@ -75,7 +82,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     var textTheme = theme.textTheme;
 
     var outlineInputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(50),
+      borderRadius: BorderRadius.circular(widget.borderRadius),
       borderSide: BorderSide(
         color: const Color(0xFF2C2C2C),
         width: 1.sp,
@@ -269,6 +276,7 @@ class CommentTextField extends StatefulWidget {
     this.onEditingComplete,
     required this.focusNode,
     this.onSend,
+    this.hintText = "Add Comment",
   });
 
   final TextEditingController controller;
@@ -276,6 +284,7 @@ class CommentTextField extends StatefulWidget {
   final Function(String)? onChanged;
   final Function()? onEditingComplete;
   final Function()? onSend;
+  final String hintText;
 
   @override
   State<CommentTextField> createState() => _CommentTextFieldState();
@@ -324,7 +333,7 @@ class _CommentTextFieldState extends State<CommentTextField> {
         fillColor: _hasFocus
             ? theme.primaryColor.withOpacity(0.1)
             : HexColor("#2C2C2C"),
-        hintText: 'Add comment',
+        hintText: widget.hintText,
         hintStyle: textTheme.bodyMedium?.copyWith(
           color: Colors.white54,
         ),

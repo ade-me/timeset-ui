@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:timeset/screens/settings_screens/settings_screen.dart';
+
+import '../settings_screens/edit_phonenumber_screen.dart';
+import '../settings_screens/manage_account_screen.dart';
+import '../settings_screens/report_problem_screen.dart';
+import './language_screen.dart';
+import './privacy_screen.dart';
+import './qr_code_screen.dart';
+import './security_screen.dart';
+import './settings_screen.dart';
 
 class SettingsRoot extends StatefulWidget {
   static const routeName = "/SettingScreen";
@@ -25,6 +33,13 @@ class _SettingsRootState extends State<SettingsRoot> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       SettingsScreen(pageController: pageController),
+      PrivacyScreen(pageController: pageController),
+      SecurityScreen(pageController: pageController),
+      QRCodeScreen(pageController: pageController),
+      LanguageScreen(pageController: pageController),
+      ReportProblemScreen(pageController: pageController),
+      ManageAccountScreen(pageController: pageController),
+      EditPhoneNumberScreen(pageController: pageController)
     ];
     return Scaffold(
       body: PageView(

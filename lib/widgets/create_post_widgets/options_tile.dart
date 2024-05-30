@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/constants/app_colors.dart';
+
+import '../../constants/app_colors.dart';
 
 class OptionsTile extends StatefulWidget {
   const OptionsTile({
@@ -12,6 +13,7 @@ class OptionsTile extends StatefulWidget {
     this.hasCustomIcon = false,
     this.customIcon = Icons.abc,
     this.trailingText = "",
+    this.isDisabled = false,
   });
 
   final String title;
@@ -20,6 +22,7 @@ class OptionsTile extends StatefulWidget {
   final bool hasCustomIcon;
   final IconData customIcon;
   final String trailingText;
+  final bool isDisabled;
 
   @override
   State<OptionsTile> createState() => _OptionsTileState();
@@ -30,7 +33,7 @@ class _OptionsTileState extends State<OptionsTile> {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: Colors.white10,
-      onTap: widget.onTap,
+      onTap: widget.isDisabled ? null : widget.onTap,
       child: ListTile(
         dense: true,
         visualDensity: const VisualDensity(
@@ -68,7 +71,7 @@ class _OptionsTileState extends State<OptionsTile> {
             Visibility(
               visible: widget.trailingText.isNotEmpty,
               child: SizedBox(
-                width: 15.w,
+                width: widget.isDisabled ? 25.w : 15.w,
                 child: Text(
                   textAlign: TextAlign.right,
                   widget.trailingText,
@@ -80,13 +83,19 @@ class _OptionsTileState extends State<OptionsTile> {
                 ),
               ),
             ),
-            SizedBox(
-              width: widget.trailingText.isNotEmpty ? 10 : 0,
+            Visibility(
+              visible: !widget.isDisabled,
+              child: SizedBox(
+                width: widget.trailingText.isNotEmpty ? 10 : 0,
+              ),
             ),
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: Colors.white,
-              size: 13.sp,
+            Visibility(
+              visible: !widget.isDisabled,
+              child: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.white,
+                size: 13.sp,
+              ),
             ),
           ],
         ),

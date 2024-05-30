@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:timeset/state_management/post_provider.dart';
 
+import '../../state_management/post_provider.dart';
 import 'constants/app_colors.dart';
 import 'helpers/custom_page_route.dart';
 import 'screens/auth/onboarding.dart';
@@ -28,6 +28,13 @@ Future<void> main() async {
   );
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Color(0xFF000000),
+    systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarDividerColor: null,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+  ));
 
   runApp(MyApp(cameras: cameras));
 }

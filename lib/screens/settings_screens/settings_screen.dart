@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:timeset/widgets/auth_widgets/auth_button.dart';
-import 'package:timeset/widgets/create_post_widgets/options_tile.dart';
-import 'package:timeset/widgets/general_widgets/app_bar_with_back_button.dart';
-import 'package:timeset/widgets/general_widgets/general_app_padding.dart';
+
+import '../../widgets/auth_widgets/auth_button.dart';
+import '../../widgets/create_post_widgets/options_tile.dart';
+import '../../widgets/general_widgets/app_bar_with_back_button.dart';
+import '../../widgets/general_widgets/general_app_padding.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
@@ -40,9 +41,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.account_circle_outlined,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        6,
+                      );
                     },
                   ),
                   OptionsTile(
@@ -50,9 +51,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.privacy_tip_outlined,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        1,
+                      );
                     },
                   ),
                   OptionsTile(
@@ -60,9 +61,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.security_rounded,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        2,
+                      );
                     },
                   ),
                   OptionsTile(
@@ -70,9 +71,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.qr_code_rounded,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        3,
+                      );
                     },
                   ),
                   OptionsTile(
@@ -80,9 +81,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.language_rounded,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        4,
+                      );
                     },
                   ),
                   OptionsTile(
@@ -90,9 +91,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     hasCustomIcon: true,
                     customIcon: Icons.report_outlined,
                     onTap: () {
-                      // widget.pageController.jumpToPage(
-                      //   3,
-                      // );
+                      widget.pageController.jumpToPage(
+                        5,
+                      );
                     },
                   ),
                   OptionsTile(

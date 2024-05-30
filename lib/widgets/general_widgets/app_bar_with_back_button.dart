@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:sizer/sizer.dart';
 
 import 'custom_app_bar_icon.dart';
@@ -13,6 +14,7 @@ class AppBarWithBackButton extends StatelessWidget
   final List<Widget>? actions;
   final bool centerTitle;
   final bool hasBackButton;
+  final String color;
 
   const AppBarWithBackButton({
     super.key,
@@ -22,6 +24,7 @@ class AppBarWithBackButton extends StatelessWidget
     this.actions,
     this.centerTitle = false,
     this.hasBackButton = true,
+    this.color = "#ffffff",
   });
 
   @override
@@ -39,6 +42,7 @@ class AppBarWithBackButton extends StatelessWidget
                 visible: hasBackButton,
                 child: CustomAppBarIcon(
                   icon: 'back',
+                  color: color,
                   function: () => hasCustomFunction
                       ? function!()
                       : Navigator.of(context).pop(),
@@ -71,6 +75,7 @@ class AppBarWithBackButton extends StatelessWidget
         title,
         style: TextStyle(
           fontSize: 15.sp,
+          color: HexColor(color),
           fontWeight: FontWeight.w500,
         ),
       ),
