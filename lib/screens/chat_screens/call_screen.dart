@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constants/app_colors.dart';
-import '../general_widgets/app_bar_with_back_button.dart';
-import '../general_widgets/general_app_padding.dart';
-import 'chat_screen_app_bar.dart';
+import '../../widgets/general_widgets/app_bar_with_back_button.dart';
+import '../../widgets/general_widgets/general_app_padding.dart';
+import '../../widgets/inbox_widgets/call_dialog.dart';
 
 class CallScreen extends StatefulWidget {
   static const routeName = '/CallScreen';
