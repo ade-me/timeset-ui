@@ -19,6 +19,7 @@ class CustomCenterDialog {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
           child: AlertDialog(
+            contentPadding: EdgeInsets.zero,
             backgroundColor: Colors.white,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(

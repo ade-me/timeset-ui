@@ -21,8 +21,6 @@ class ShopCategoryScreen extends StatefulWidget {
 class _ShopCategoryScreenState extends State<ShopCategoryScreen> {
   Timer? timer;
 
-  String countdown = '';
-
   Duration _duration = const Duration(
     days: 3,
     hours: 12,

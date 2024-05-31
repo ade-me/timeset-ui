@@ -18,6 +18,7 @@ import '../screens/shop_screens/cart_screen.dart';
 import '../screens/shop_screens/check_out_screen.dart';
 import '../screens/shop_screens/product_screen.dart';
 import '../screens/shop_screens/shop_category_screen.dart';
+import '../widgets/inbox_widgets/call_screen.dart';
 
 class CustomPageRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings, cameras) {
@@ -107,6 +108,11 @@ class CustomPageRoute {
       case ChatScreen.routeName:
         return _pageTransition(
           child: const ChatScreen(),
+          settings: settings,
+        );
+      case CallScreen.routeName:
+        return _pageTransition(
+          child: const CallScreen(),
           settings: settings,
         );
       default:
